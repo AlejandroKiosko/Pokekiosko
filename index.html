@@ -3,503 +3,184 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PokeKiosko</title>
+  <title>PokeKiosko — Peluches Pokémon Originales</title>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display&display=swap" rel="stylesheet">
   <style>
     :root {
       --red: #D63B2F;
       --dark: #111;
-      --mid: #555;
+      --mid: #666;
       --light: #f8f7f5;
       --white: #fff;
       --border: #e8e5e0;
       --yellow: #F5C842;
     }
-
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-
-    body {
-      font-family: 'DM Sans', sans-serif;
-      background: var(--white);
-      color: var(--dark);
-      font-size: 15px;
-    }
+    body { font-family: 'DM Sans', sans-serif; background: var(--white); color: var(--dark); font-size: 15px; }
 
     /* HEADER */
-    header {
-      position: sticky; top: 0; z-index: 100;
-      background: var(--white);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .header-inner {
-      max-width: 1280px; margin: 0 auto;
-      padding: 0 2rem; height: 64px;
-      display: flex; align-items: center; gap: 2rem;
-    }
-
-    .logo {
-      display: flex; align-items: center; gap: 10px;
-      text-decoration: none; flex-shrink: 0;
-    }
-
+    header { position: sticky; top: 0; z-index: 100; background: var(--white); border-bottom: 1px solid var(--border); }
+    .header-inner { max-width: 1200px; margin: 0 auto; padding: 0 2rem; height: 64px; display: flex; align-items: center; gap: 2rem; }
+    .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; }
     .logo-mark { width: 30px; height: 30px; }
-
-    .logo-name {
-      font-family: 'DM Serif Display', serif;
-      font-size: 1.25rem; color: var(--dark); letter-spacing: -0.3px;
-    }
+    .logo-name { font-family: 'DM Serif Display', serif; font-size: 1.3rem; color: var(--dark); letter-spacing: -0.3px; }
     .logo-name em { color: var(--red); font-style: normal; }
-
-    .search-wrap { flex: 1; max-width: 360px; margin-left: auto; }
-
-    .search-wrap input {
-      width: 100%;
-      background: var(--light);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 9px 14px 9px 38px;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.88rem; color: var(--dark); outline: none;
-      background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' fill='none' stroke='%23aaa' stroke-width='2' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='m21 21-4.35-4.35'/%3E%3C/svg%3E");
-      background-repeat: no-repeat; background-position: 12px center;
-      transition: border-color 0.2s;
-    }
+    .search-wrap { flex: 1; max-width: 340px; margin-left: auto; }
+    .search-wrap input { width: 100%; background: var(--light); border: 1px solid var(--border); border-radius: 8px; padding: 9px 14px 9px 38px; font-family: 'DM Sans', sans-serif; font-size: 0.88rem; color: var(--dark); outline: none; background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' fill='none' stroke='%23aaa' stroke-width='2' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='m21 21-4.35-4.35'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: 12px center; transition: border-color 0.2s; }
     .search-wrap input:focus { border-color: var(--dark); }
     .search-wrap input::placeholder { color: #aaa; }
-
     .header-actions { display: flex; align-items: center; gap: 0.25rem; }
-
-    .icon-btn {
-      position: relative; width: 40px; height: 40px;
-      display: flex; align-items: center; justify-content: center;
-      border: none; background: none; cursor: pointer;
-      border-radius: 8px; color: var(--dark);
-      transition: background 0.15s;
-    }
+    .icon-btn { position: relative; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border: none; background: none; cursor: pointer; border-radius: 8px; color: var(--dark); transition: background 0.15s; }
     .icon-btn:hover { background: var(--light); }
     .icon-btn svg { width: 20px; height: 20px; stroke: currentColor; fill: none; stroke-width: 1.8; }
-
-    .badge {
-      position: absolute; top: 4px; right: 4px;
-      width: 16px; height: 16px;
-      background: var(--red); color: white; border-radius: 50%;
-      font-size: 0.6rem; font-weight: 600;
-      display: flex; align-items: center; justify-content: center;
-    }
-
-    .btn-login {
-      margin-left: 0.5rem;
-      background: var(--dark); color: white;
-      border: none; border-radius: 8px;
-      padding: 8px 18px;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.85rem; font-weight: 500;
-      cursor: pointer; transition: opacity 0.2s;
-    }
-    .btn-login:hover { opacity: 0.8; }
+    .badge { position: absolute; top: 4px; right: 4px; width: 16px; height: 16px; background: var(--red); color: white; border-radius: 50%; font-size: 0.6rem; font-weight: 600; display: flex; align-items: center; justify-content: center; }
+    .btn-wa { margin-left: 0.5rem; background: #25D366; color: white; border: none; border-radius: 8px; padding: 8px 16px; font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: opacity 0.2s; display: flex; align-items: center; gap: 6px; text-decoration: none; }
+    .btn-wa:hover { opacity: 0.85; }
 
     /* NAV */
-    nav { border-bottom: 1px solid var(--border); background: var(--white); }
-
-    .nav-inner {
-      max-width: 1280px; margin: 0 auto;
-      padding: 0 2rem;
-      display: flex; gap: 0; overflow-x: auto;
-    }
+    nav { border-bottom: 1px solid var(--border); }
+    .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 2rem; display: flex; overflow-x: auto; }
     .nav-inner::-webkit-scrollbar { display: none; }
-
-    nav a {
-      color: var(--mid); text-decoration: none;
-      font-size: 0.85rem; font-weight: 500;
-      padding: 11px 16px; white-space: nowrap;
-      transition: color 0.15s; position: relative;
-    }
+    nav a { color: var(--mid); text-decoration: none; font-size: 0.85rem; font-weight: 500; padding: 11px 16px; white-space: nowrap; transition: color 0.15s; position: relative; }
     nav a:hover { color: var(--dark); }
     nav a.active { color: var(--dark); font-weight: 600; }
-    nav a.active::after {
-      content: ''; position: absolute;
-      bottom: 0; left: 16px; right: 16px;
-      height: 2px; background: var(--dark);
-    }
-    nav a.highlight { color: var(--red); font-weight: 600; }
+    nav a.active::after { content: ''; position: absolute; bottom: 0; left: 16px; right: 16px; height: 2px; background: var(--dark); }
 
-    /* LAYOUT */
-    .page { max-width: 1280px; margin: 0 auto; padding: 0 2rem; }
+    .page { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
 
     /* HERO */
-    .hero {
-      border-bottom: 1px solid var(--border);
-      display: grid; grid-template-columns: 1fr 480px;
-      align-items: center; gap: 0;
-      min-height: 480px; overflow: hidden;
-    }
-
-    .hero-text {
-      padding: 5rem 4rem 5rem 0;
-      animation: fadeUp 0.7s ease both;
-    }
-
-    .hero-label {
-      display: inline-flex; align-items: center; gap: 6px;
-      font-size: 0.78rem; font-weight: 600;
-      letter-spacing: 1.5px; text-transform: uppercase;
-      color: var(--red); margin-bottom: 1.5rem;
-    }
-    .hero-label::before {
-      content: ''; display: inline-block;
-      width: 20px; height: 2px; background: var(--red);
-    }
-
-    .hero h1 {
-      font-family: 'DM Serif Display', serif;
-      font-size: clamp(2.8rem, 4vw, 4.2rem);
-      line-height: 1.08; letter-spacing: -1px;
-      color: var(--dark); margin-bottom: 1.2rem;
-    }
-
-    .hero p {
-      color: var(--mid); font-size: 1rem;
-      line-height: 1.7; max-width: 400px; margin-bottom: 2.5rem;
-    }
-
-    .hero-btns { display: flex; gap: 0.75rem; flex-wrap: wrap; }
-
-    .btn-primary {
-      background: var(--dark); color: white;
-      border: none; border-radius: 8px;
-      padding: 12px 28px;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.9rem; font-weight: 500;
-      cursor: pointer; transition: opacity 0.2s;
-    }
-    .btn-primary:hover { opacity: 0.85; }
-
-    .btn-outline {
-      background: none; color: var(--dark);
-      border: 1.5px solid var(--border);
-      border-radius: 8px; padding: 12px 28px;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.9rem; font-weight: 500;
-      cursor: pointer; transition: border-color 0.2s;
-    }
+    .hero { border-bottom: 1px solid var(--border); display: grid; grid-template-columns: 1fr 420px; min-height: 400px; overflow: hidden; }
+    .hero-text { padding: 4rem 3rem 4rem 0; display: flex; flex-direction: column; justify-content: center; animation: fadeUp 0.6s ease both; }
+    .hero-label { display: inline-flex; align-items: center; gap: 6px; font-size: 0.75rem; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--red); margin-bottom: 1.2rem; }
+    .hero-label::before { content: ''; width: 18px; height: 2px; background: var(--red); }
+    .hero h1 { font-family: 'DM Serif Display', serif; font-size: clamp(2.2rem, 3.5vw, 3.6rem); line-height: 1.1; letter-spacing: -1px; margin-bottom: 1rem; }
+    .hero p { color: var(--mid); font-size: 0.95rem; line-height: 1.7; max-width: 380px; margin-bottom: 2rem; }
+    .hero-btns { display: flex; gap: 0.75rem; }
+    .btn-primary { background: var(--dark); color: white; border: none; border-radius: 8px; padding: 12px 26px; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; font-weight: 500; cursor: pointer; transition: opacity 0.2s; text-decoration: none; display: inline-block; }
+    .btn-primary:hover { opacity: 0.82; }
+    .btn-outline { background: none; color: var(--dark); border: 1.5px solid var(--border); border-radius: 8px; padding: 12px 26px; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; font-weight: 500; cursor: pointer; transition: border-color 0.2s; }
     .btn-outline:hover { border-color: var(--dark); }
+    .hero-visual { background: var(--light); border-left: 1px solid var(--border); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+    .hero-visual::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 60% 40%, rgba(214,59,47,0.07) 0%, transparent 65%); }
+    .pokeball-svg { width: 200px; height: 200px; animation: float 4s ease-in-out infinite; filter: drop-shadow(0 20px 36px rgba(0,0,0,0.1)); }
+    @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-14px)} }
+    @keyframes fadeUp { from{opacity:0;transform:translateY(14px)} to{opacity:1;transform:translateY(0)} }
 
-    .hero-visual {
-      background: var(--light);
-      height: 100%; min-height: 480px;
-      display: flex; align-items: center; justify-content: center;
-      border-left: 1px solid var(--border);
-      position: relative; overflow: hidden;
-    }
-    .hero-visual::before {
-      content: ''; position: absolute; inset: 0;
-      background: radial-gradient(circle at center, rgba(214,59,47,0.06) 0%, transparent 70%);
-    }
+    /* TRUST */
+    .trust-band { border-bottom: 1px solid var(--border); background: var(--light); }
+    .trust-inner { max-width: 1200px; margin: 0 auto; padding: 0 2rem; display: grid; grid-template-columns: repeat(4,1fr); }
+    .trust-item { padding: 1.2rem 1.5rem; display: flex; align-items: center; gap: 0.8rem; border-right: 1px solid var(--border); font-size: 0.82rem; color: var(--mid); }
+    .trust-item:last-child { border-right: none; }
+    .trust-item strong { color: var(--dark); display: block; font-size: 0.85rem; }
+    .trust-icon { font-size: 1.3rem; flex-shrink: 0; }
 
-    .pokeball-svg {
-      width: 220px; height: 220px;
-      animation: float 4s ease-in-out infinite;
-      filter: drop-shadow(0 24px 40px rgba(0,0,0,0.12));
-    }
+    /* FILTER */
+    .filter-bar { padding: 1.4rem 0; border-bottom: 1px solid var(--border); display: flex; gap: 0.5rem; align-items: center; overflow-x: auto; }
+    .filter-bar::-webkit-scrollbar { display: none; }
+    .filter-label { font-size: 0.82rem; color: var(--mid); font-weight: 500; flex-shrink: 0; margin-right: 0.3rem; }
+    .f-chip { border: 1.5px solid var(--border); border-radius: 100px; padding: 6px 14px; font-size: 0.8rem; font-weight: 500; color: var(--dark); cursor: pointer; white-space: nowrap; background: none; font-family: 'DM Sans', sans-serif; transition: border-color 0.15s, background 0.15s; flex-shrink: 0; }
+    .f-chip:hover { border-color: var(--dark); }
+    .f-chip.on { background: var(--dark); border-color: var(--dark); color: white; }
 
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-12px); }
-    }
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(16px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* CATEGORY PILLS */
-    .cats-row {
-      padding: 1.5rem 0; border-bottom: 1px solid var(--border);
-      display: flex; gap: 0.5rem; overflow-x: auto;
-    }
-    .cats-row::-webkit-scrollbar { display: none; }
-
-    .cat-pill {
-      display: inline-flex; align-items: center; gap: 6px;
-      border: 1.5px solid var(--border); border-radius: 100px;
-      padding: 7px 16px; font-size: 0.82rem; font-weight: 500;
-      color: var(--dark); text-decoration: none; white-space: nowrap;
-      transition: border-color 0.15s, background 0.15s; flex-shrink: 0;
-    }
-    .cat-pill:hover { border-color: var(--dark); background: var(--light); }
-    .cat-pill.active { background: var(--dark); border-color: var(--dark); color: white; }
-
-    /* SECTION */
-    .section { padding: 4rem 0; border-bottom: 1px solid var(--border); }
-
-    .section-head {
-      display: flex; align-items: baseline;
-      justify-content: space-between; margin-bottom: 2rem;
-    }
-
-    .section-title {
-      font-family: 'DM Serif Display', serif;
-      font-size: 1.6rem; letter-spacing: -0.5px; color: var(--dark);
-    }
-
-    .see-all {
-      font-size: 0.85rem; color: var(--mid);
-      text-decoration: none; font-weight: 500;
-      transition: color 0.15s;
-    }
-    .see-all:hover { color: var(--dark); }
+    .section { padding: 3rem 0; }
+    .section-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 1.8rem; }
+    .section-title { font-family: 'DM Serif Display', serif; font-size: 1.5rem; letter-spacing: -0.5px; }
+    .count { font-size: 0.82rem; color: var(--mid); margin-left: 0.5rem; font-weight: 400; font-family: 'DM Sans', sans-serif; }
 
     /* PRODUCTS */
-    .products-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
-      gap: 1px; border: 1px solid var(--border);
-      border-radius: 12px; overflow: hidden;
-    }
-
-    .product-card {
-      background: var(--white); cursor: pointer;
-      transition: background 0.15s; position: relative;
-      display: flex; flex-direction: column;
-    }
+    .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1px; border: 1px solid var(--border); border-radius: 14px; overflow: hidden; }
+    .product-card { background: var(--white); cursor: pointer; transition: background 0.15s; position: relative; display: flex; flex-direction: column; }
     .product-card:hover { background: var(--light); }
-    .product-card:hover .card-img-wrap { background: #eeece8; }
+    .product-card:hover .card-img-bg { background: #eceae5; }
+    .product-card.hidden { display: none; }
 
-    .card-img-wrap {
-      aspect-ratio: 1; display: flex;
-      align-items: center; justify-content: center;
-      font-size: 5rem; background: var(--light);
-      transition: background 0.15s; position: relative;
-    }
+    .card-img-bg { aspect-ratio: 1; display: flex; align-items: center; justify-content: center; background: var(--light); position: relative; overflow: hidden; transition: background 0.15s; }
+    .card-img-bg img { width: 85%; height: 85%; object-fit: contain; transition: transform 0.35s cubic-bezier(.34,1.56,.64,1); }
+    .product-card:hover .card-img-bg img { transform: scale(1.07) translateY(-4px); }
+    .poke-emoji { font-size: 5rem; line-height: 1; transition: transform 0.3s; filter: drop-shadow(0 6px 12px rgba(0,0,0,0.1)); }
+    .product-card:hover .poke-emoji { transform: scale(1.07) translateY(-4px); }
 
-    .card-tag {
-      position: absolute; top: 12px; left: 12px;
-      font-size: 0.68rem; font-weight: 600; letter-spacing: 0.5px;
-      padding: 3px 8px; border-radius: 4px;
-      background: var(--dark); color: white;
-    }
-    .card-tag.sale { background: var(--red); }
-    .card-tag.new { background: #1d4ed8; }
+    .card-tag { position: absolute; top: 10px; left: 10px; font-size: 0.67rem; font-weight: 600; letter-spacing: 0.5px; padding: 3px 8px; border-radius: 4px; background: var(--dark); color: white; z-index: 2; }
+    .card-tag.plush { background: #7c3aed; }
+    .card-tag.bag { background: var(--red); }
+    .card-tag.eevee-fam { background: #0369a1; }
 
-    .card-wish {
-      position: absolute; top: 10px; right: 10px;
-      width: 30px; height: 30px;
-      background: white; border: 1px solid var(--border);
-      border-radius: 50%; display: flex; align-items: center; justify-content: center;
-      font-size: 0.85rem; cursor: pointer; transition: border-color 0.15s;
-    }
+    .card-wish { position: absolute; top: 8px; right: 8px; width: 30px; height: 30px; background: white; border: 1px solid var(--border); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.85rem; cursor: pointer; transition: border-color 0.15s; z-index: 2; }
     .card-wish:hover { border-color: var(--red); }
 
-    .card-info {
-      padding: 1rem 1.2rem 1.2rem;
-      display: flex; flex-direction: column; gap: 0.3rem; flex: 1;
-    }
+    .card-info { padding: 1rem 1.1rem 1.2rem; display: flex; flex-direction: column; gap: 0.25rem; flex: 1; }
+    .card-cat { font-size: 0.7rem; color: var(--mid); font-weight: 500; text-transform: uppercase; letter-spacing: 0.8px; }
+    .card-name { font-weight: 600; font-size: 0.95rem; color: var(--dark); }
+    .card-size { font-size: 0.78rem; color: var(--mid); }
+    .card-bottom { display: flex; align-items: center; justify-content: space-between; margin-top: 0.8rem; }
+    .card-price { font-weight: 600; font-size: 1.05rem; color: var(--dark); }
+    .card-price span { font-size: 0.75rem; color: var(--mid); font-weight: 400; margin-left: 2px; }
+    .btn-pedido { background: var(--dark); color: white; border: none; border-radius: 6px; padding: 7px 12px; font-family: 'DM Sans', sans-serif; font-size: 0.75rem; font-weight: 600; cursor: pointer; transition: background 0.15s; white-space: nowrap; }
+    .btn-pedido:hover { background: var(--red); }
 
-    .card-cat {
-      font-size: 0.72rem; color: var(--mid); font-weight: 500;
-      text-transform: uppercase; letter-spacing: 0.8px;
-    }
+    /* EEVEE SPOTLIGHT */
+    .spotlight { border: 1px solid var(--border); border-radius: 14px; overflow: hidden; display: grid; grid-template-columns: 1fr 1fr; margin-bottom: 3rem; }
+    .spotlight-text { padding: 3rem; display: flex; flex-direction: column; justify-content: center; }
+    .spotlight-tag { font-size: 0.72rem; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--red); margin-bottom: 1rem; display: flex; align-items: center; gap: 6px; }
+    .spotlight-tag::before { content: ''; width: 16px; height: 2px; background: var(--red); }
+    .spotlight-text h2 { font-family: 'DM Serif Display', serif; font-size: 2rem; letter-spacing: -0.5px; margin-bottom: 0.75rem; line-height: 1.15; }
+    .spotlight-text p { color: var(--mid); font-size: 0.88rem; line-height: 1.7; margin-bottom: 1.5rem; }
+    .spotlight-grid { background: var(--light); padding: 2rem; display: grid; grid-template-columns: repeat(3,1fr); gap: 0.8rem; border-left: 1px solid var(--border); align-content: center; }
+    .evol-chip { background: white; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; cursor: pointer; transition: border-color 0.15s, transform 0.15s; }
+    .evol-chip:hover { border-color: var(--dark); transform: translateY(-2px); }
+    .evol-img { width: 100%; aspect-ratio: 1; object-fit: contain; background: var(--light); padding: 8px; }
+    .evol-info { padding: 0.4rem 0.5rem 0.5rem; text-align: center; }
+    .evol-name { font-size: 0.7rem; font-weight: 700; color: var(--dark); }
+    .evol-price { font-size: 0.68rem; color: var(--mid); }
 
-    .card-name { font-weight: 500; font-size: 0.95rem; color: var(--dark); line-height: 1.3; }
+    /* GENGAR BANNER */
+    .gengar-banner { background: var(--dark); border-radius: 14px; padding: 3rem; display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 2rem; margin-bottom: 3rem; }
+    .gengar-banner h3 { font-family: 'DM Serif Display', serif; font-size: 1.8rem; color: white; letter-spacing: -0.5px; margin-bottom: 0.5rem; }
+    .gengar-banner p { color: rgba(255,255,255,0.55); font-size: 0.88rem; line-height: 1.6; }
+    .gengar-right { display: flex; align-items: center; gap: 1.5rem; }
+    .gengar-img { width: 100px; height: 100px; object-fit: contain; filter: drop-shadow(0 8px 20px rgba(0,0,0,0.5)); animation: float 3s ease-in-out infinite; }
+    .btn-gengar { background: var(--yellow); color: var(--dark); border: none; border-radius: 8px; padding: 12px 24px; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; font-weight: 700; cursor: pointer; white-space: nowrap; transition: opacity 0.2s; }
+    .btn-gengar:hover { opacity: 0.88; }
 
-    .card-stars { font-size: 0.75rem; color: var(--mid); }
-    .card-stars b { color: var(--dark); font-weight: 600; }
+    /* HOW IT WORKS */
+    .how-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; border: 1px solid var(--border); border-radius: 14px; overflow: hidden; }
+    .how-item { background: var(--white); padding: 2rem 1.8rem; }
+    .how-num { font-family: 'DM Serif Display', serif; font-size: 2.5rem; color: var(--border); line-height: 1; margin-bottom: 1rem; }
+    .how-item h4 { font-weight: 600; font-size: 0.95rem; margin-bottom: 0.4rem; }
+    .how-item p { font-size: 0.82rem; color: var(--mid); line-height: 1.6; }
 
-    .card-bottom {
-      display: flex; align-items: center;
-      justify-content: space-between; margin-top: 0.6rem;
-    }
-
-    .card-price { font-weight: 600; font-size: 1rem; color: var(--dark); }
-    .card-price-old {
-      font-size: 0.78rem; color: #bbb;
-      text-decoration: line-through; margin-right: 4px;
-    }
-
-    .btn-cart {
-      width: 32px; height: 32px;
-      background: var(--dark); color: white;
-      border: none; border-radius: 6px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 0.9rem; cursor: pointer; transition: opacity 0.15s;
-    }
-    .btn-cart:hover { opacity: 0.75; }
-
-    /* PROMO BAND */
-    .promo-band { background: var(--dark); color: white; padding: 3rem 0; }
-
-    .promo-band-inner {
-      display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0;
-    }
-
-    .promo-block {
-      padding: 2rem 2.5rem;
-      border-right: 1px solid rgba(255,255,255,0.1);
-      cursor: pointer; transition: background 0.15s;
-    }
-    .promo-block:last-child { border-right: none; }
-    .promo-block:hover { background: rgba(255,255,255,0.04); }
-
-    .promo-icon { font-size: 2rem; margin-bottom: 1rem; }
-
-    .promo-tag {
-      font-size: 0.72rem; color: var(--yellow);
-      font-weight: 600; letter-spacing: 1.5px;
-      text-transform: uppercase; margin-bottom: 0.5rem;
-    }
-
-    .promo-block h3 {
-      font-family: 'DM Serif Display', serif;
-      font-size: 1.4rem; margin-bottom: 0.4rem; letter-spacing: -0.3px;
-    }
-
-    .promo-block p { font-size: 0.85rem; color: rgba(255,255,255,0.5); line-height: 1.5; }
-
-    .promo-link {
-      display: inline-flex; align-items: center; gap: 6px;
-      margin-top: 1.2rem; font-size: 0.85rem; font-weight: 600;
-      color: var(--yellow); text-decoration: none; transition: gap 0.15s;
-    }
-    .promo-link:hover { gap: 10px; }
-
-    /* TYPES */
-    .types-grid {
-      display: grid; grid-template-columns: repeat(6, 1fr);
-      gap: 1px; border: 1px solid var(--border);
-      border-radius: 12px; overflow: hidden;
-    }
-
-    .type-cell {
-      padding: 1.2rem 1rem; text-align: center;
-      cursor: pointer; background: var(--white);
-      transition: background 0.15s; text-decoration: none;
-      color: var(--dark); display: flex;
-      flex-direction: column; align-items: center; gap: 0.4rem;
-    }
-    .type-cell:hover { background: var(--light); }
-    .type-emoji { font-size: 1.6rem; }
-    .type-label { font-size: 0.78rem; font-weight: 500; color: var(--mid); }
-
-    /* PERKS */
-    .perks-grid {
-      display: grid; grid-template-columns: repeat(4, 1fr);
-      gap: 1px; border: 1px solid var(--border);
-      border-radius: 12px; overflow: hidden;
-    }
-
-    .perk {
-      background: var(--white); padding: 2rem 1.5rem;
-      display: flex; gap: 1rem; align-items: flex-start;
-    }
-    .perk-icon { font-size: 1.5rem; flex-shrink: 0; }
-    .perk h4 { font-weight: 600; font-size: 0.9rem; margin-bottom: 0.25rem; }
-    .perk p { font-size: 0.8rem; color: var(--mid); line-height: 1.5; }
-
-    /* NEWSLETTER */
-    .newsletter {
-      padding: 5rem 0; border-bottom: 1px solid var(--border); text-align: center;
-    }
-    .newsletter h2 {
-      font-family: 'DM Serif Display', serif;
-      font-size: 2.4rem; letter-spacing: -0.5px; margin-bottom: 0.75rem;
-    }
-    .newsletter p { color: var(--mid); font-size: 0.95rem; margin-bottom: 2rem; }
-
-    .nl-form {
-      display: flex; max-width: 420px; margin: 0 auto; gap: 0.5rem;
-    }
-    .nl-form input {
-      flex: 1; background: var(--light);
-      border: 1.5px solid var(--border); border-radius: 8px;
-      padding: 11px 16px; font-family: 'DM Sans', sans-serif;
-      font-size: 0.9rem; outline: none; transition: border-color 0.2s;
-    }
-    .nl-form input:focus { border-color: var(--dark); }
-    .nl-form button {
-      background: var(--dark); color: white; border: none;
-      border-radius: 8px; padding: 11px 24px;
-      font-family: 'DM Sans', sans-serif; font-size: 0.9rem;
-      font-weight: 500; cursor: pointer; white-space: nowrap;
-      transition: opacity 0.2s;
-    }
-    .nl-form button:hover { opacity: 0.8; }
+    /* WA FLOAT */
+    .wa-float { position: fixed; bottom: 1.5rem; right: 1.5rem; background: #25D366; color: white; width: 52px; height: 52px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; cursor: pointer; z-index: 99; box-shadow: 0 4px 16px rgba(37,211,102,0.4); transition: transform 0.2s; text-decoration: none; }
+    .wa-float:hover { transform: scale(1.1); }
 
     /* FOOTER */
-    footer { padding: 3.5rem 0 0; background: var(--white); }
-
-    .footer-grid {
-      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
-      gap: 4rem; padding-bottom: 3rem;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .footer-brand p {
-      color: var(--mid); font-size: 0.85rem; line-height: 1.7;
-      margin: 1rem 0 1.5rem; max-width: 280px;
-    }
-
-    .social-row { display: flex; gap: 0.5rem; }
-
-    .social-btn {
-      width: 34px; height: 34px;
-      border: 1.5px solid var(--border); border-radius: 8px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 0.9rem; cursor: pointer;
-      transition: border-color 0.15s, background 0.15s; text-decoration: none;
-    }
-    .social-btn:hover { border-color: var(--dark); background: var(--light); }
-
-    footer h5 {
-      font-size: 0.82rem; font-weight: 600;
-      letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 1.2rem;
-    }
-
-    footer ul { list-style: none; display: flex; flex-direction: column; gap: 0.65rem; }
-    footer ul li a { font-size: 0.85rem; color: var(--mid); text-decoration: none; transition: color 0.15s; }
-    footer ul li a:hover { color: var(--dark); }
-
-    .footer-bottom {
-      padding: 1.5rem 0; display: flex;
-      align-items: center; justify-content: space-between;
-    }
-    .footer-bottom span { font-size: 0.78rem; color: var(--mid); }
-
+    footer { margin-top: 4rem; border-top: 1px solid var(--border); padding: 2.5rem 0 1.5rem; }
+    .footer-inner { max-width: 1200px; margin: 0 auto; padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+    .footer-inner span { font-size: 0.78rem; color: var(--mid); }
     .pay-row { display: flex; gap: 0.4rem; }
-    .pay-chip {
-      font-size: 0.72rem; font-weight: 600; color: var(--mid);
-      border: 1px solid var(--border); border-radius: 4px; padding: 3px 8px;
-    }
+    .pay-chip { font-size: 0.7rem; font-weight: 600; color: var(--mid); border: 1px solid var(--border); border-radius: 4px; padding: 3px 7px; }
 
-    /* SCROLL TOP */
-    .scroll-top {
-      position: fixed; bottom: 1.5rem; right: 1.5rem;
-      width: 40px; height: 40px;
-      background: var(--dark); color: white;
-      border: none; border-radius: 8px;
-      font-size: 1rem; cursor: pointer;
-      display: flex; align-items: center; justify-content: center;
-      opacity: 0; transition: opacity 0.2s, transform 0.2s; z-index: 99;
-    }
-    .scroll-top.visible { opacity: 1; }
-    .scroll-top:hover { transform: translateY(-2px); }
+    /* TOAST */
+    .toast { position: fixed; bottom: 5rem; right: 1.5rem; background: var(--dark); color: white; padding: 12px 20px; border-radius: 10px; font-size: 0.85rem; font-weight: 500; opacity: 0; transform: translateY(8px); transition: opacity 0.3s, transform 0.3s; z-index: 200; pointer-events: none; }
+    .toast.show { opacity: 1; transform: translateY(0); }
 
     /* RESPONSIVE */
-    @media (max-width: 1024px) {
-      .types-grid { grid-template-columns: repeat(4, 1fr); }
-      .perks-grid { grid-template-columns: repeat(2, 1fr); }
-      .footer-grid { grid-template-columns: 1fr 1fr; }
-    }
-    @media (max-width: 768px) {
+    @media (max-width: 900px) {
       .hero { grid-template-columns: 1fr; }
       .hero-visual { display: none; }
       .hero-text { padding: 3rem 0; }
-      .promo-band-inner { grid-template-columns: 1fr; }
-      .promo-block { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1); }
-      .types-grid { grid-template-columns: repeat(3, 1fr); }
-      .perks-grid { grid-template-columns: 1fr; }
-      .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
-      .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+      .trust-inner { grid-template-columns: repeat(2,1fr); }
+      .trust-item:nth-child(2) { border-right: none; }
+      .spotlight { grid-template-columns: 1fr; }
+      .spotlight-grid { border-left: none; border-top: 1px solid var(--border); grid-template-columns: repeat(4,1fr); }
+      .how-grid { grid-template-columns: 1fr; }
+      .gengar-banner { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      .trust-inner { grid-template-columns: 1fr; }
+      .trust-item { border-right: none; border-bottom: 1px solid var(--border); }
+      .spotlight-grid { grid-template-columns: repeat(3,1fr); }
     }
   </style>
 </head>
@@ -508,7 +189,7 @@
 <header>
   <div class="header-inner">
     <a href="#" class="logo">
-      <svg class="logo-mark" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <svg class="logo-mark" viewBox="0 0 30 30" fill="none">
         <circle cx="15" cy="15" r="14" fill="white" stroke="#e5e5e5" stroke-width="1"/>
         <path d="M1,15 A14,14 0 0,1 29,15 Z" fill="#D63B2F"/>
         <rect x="1" y="13.5" width="28" height="3" fill="#111"/>
@@ -517,18 +198,14 @@
       <span class="logo-name">Poke<em>Kiosko</em></span>
     </a>
     <div class="search-wrap">
-      <input type="text" placeholder="Buscar cartas, figuras, peluches…">
+      <input type="text" id="searchInput" placeholder="Buscar Pikachu, Eevee, Gengar…">
     </div>
     <div class="header-actions">
       <button class="icon-btn" title="Favoritos">
         <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-        <span class="badge">3</span>
+        <span class="badge" id="wishBadge" style="display:none">0</span>
       </button>
-      <button class="icon-btn" title="Carrito">
-        <svg viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-        <span class="badge">2</span>
-      </button>
-      <button class="btn-login">Ingresar</button>
+      <a class="btn-wa" href="https://wa.me/573000000000?text=Hola!%20Quiero%20hacer%20un%20pedido%20en%20PokeKiosko%20🎉" target="_blank">💬 <span>WhatsApp</span></a>
     </div>
   </div>
 </header>
@@ -536,29 +213,26 @@
 <nav>
   <div class="nav-inner">
     <a href="#" class="active">Inicio</a>
-    <a href="#">Cartas TCG</a>
-    <a href="#">Figuras</a>
-    <a href="#">Peluches</a>
-    <a href="#">Videojuegos</a>
-    <a href="#">Ropa</a>
-    <a href="#">Accesorios</a>
-    <a href="#" class="highlight">Ofertas</a>
+    <a href="#catalogo">Todos los peluches</a>
+    <a href="#eeveelutions">Eeveelutions</a>
+    <a href="#mochila">Mochila Gengar</a>
+    <a href="#pedido">¿Cómo pedir?</a>
   </div>
 </nav>
 
 <div class="page">
   <div class="hero">
     <div class="hero-text">
-      <div class="hero-label">Nueva colección 2025</div>
-      <h1>Todo lo que un entrenador necesita.</h1>
-      <p>Cartas, figuras, peluches y más. La tienda Pokémon más completa de Colombia, con envío a todo el país.</p>
+      <div class="hero-label">Peluches originales Pokémon</div>
+      <h1>Los más adorables del mundo Pokémon.</h1>
+      <p>Peluches 100% oficiales de Pokémon Center. Envío a toda Colombia. Haz tu pedido por WhatsApp.</p>
       <div class="hero-btns">
-        <button class="btn-primary">Ver catálogo</button>
-        <button class="btn-outline">Cartas TCG</button>
+        <a href="#catalogo" class="btn-primary">Ver catálogo</a>
+        <button class="btn-outline" onclick="document.getElementById('pedido').scrollIntoView({behavior:'smooth'})">¿Cómo pedir?</button>
       </div>
     </div>
     <div class="hero-visual">
-      <svg class="pokeball-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+      <svg class="pokeball-svg" viewBox="0 0 200 200">
         <circle cx="100" cy="100" r="96" fill="white" stroke="#ddd" stroke-width="2"/>
         <path d="M4,100 A96,96 0 0,1 196,100 Z" fill="#D63B2F"/>
         <rect x="4" y="95" width="192" height="10" fill="#111"/>
@@ -570,163 +244,341 @@
   </div>
 </div>
 
-<div class="page">
-  <div class="cats-row">
-    <a class="cat-pill active" href="#">Todo</a>
-    <a class="cat-pill" href="#">🃏 Sobres TCG</a>
-    <a class="cat-pill" href="#">🏆 Cajas Élite</a>
-    <a class="cat-pill" href="#">🎭 Figuras</a>
-    <a class="cat-pill" href="#">🧸 Peluches</a>
-    <a class="cat-pill" href="#">🎮 Videojuegos</a>
-    <a class="cat-pill" href="#">👕 Ropa</a>
-    <a class="cat-pill" href="#">🎒 Mochilas</a>
-    <a class="cat-pill" href="#">✏️ Papelería</a>
+<div class="trust-band">
+  <div class="trust-inner">
+    <div class="trust-item"><span class="trust-icon">🏷️</span><div><strong>100% originales</strong>Pokémon Center oficial</div></div>
+    <div class="trust-item"><span class="trust-icon">🚚</span><div><strong>Envío a Colombia</strong>Bogotá y todo el país</div></div>
+    <div class="trust-item"><span class="trust-icon">💬</span><div><strong>Pedido por WhatsApp</strong>Rápido y seguro</div></div>
+    <div class="trust-item"><span class="trust-icon">💳</span><div><strong>Nequi / Transferencia</strong>Pago fácil</div></div>
   </div>
 </div>
 
-<div class="page">
+<!-- EEVEE SPOTLIGHT -->
+<div class="page" id="eeveelutions">
+  <div class="section">
+    <div class="spotlight">
+      <div class="spotlight-text">
+        <div class="spotlight-tag">Colección especial</div>
+        <h2>Las 9 Eeveelutions, todas disponibles.</h2>
+        <p>Colecciona todas las evoluciones de Eevee. Peluches de 10 a 13 pulgadas, 100% oficiales.</p>
+        <a href="#catalogo" class="btn-primary" style="width:fit-content">Ver todas →</a>
+      </div>
+      <div class="spotlight-grid">
+        <div class="evol-chip" onclick="pedirWhatsApp('Eevee', 24.99)">
+          <img class="evol-img" src="https://raw.githubusercontent.com/AlejandroKiosko/Pokekiosko/main/fotos/pokekiosko/P10929_72-10324-101_01.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="Eevee">
+          <div style="display:none;align-items:center;justify-content:center;width:100%;aspect-ratio:1;font-size:2.5rem">🦊</div>
+          <div class="evol-info"><div class="evol-name">Eevee</div><div class="evol-price">$24.99</div></div>
+        </div>
+        <div class="evol-chip" onclick="pedirWhatsApp('Vaporeon', 24.99)">
+          <img class="evol-img" src="https://raw.githubusercontent.com/AlejandroKiosko/Pokekiosko/main/fotos/pokekiosko/P11178_72-10373-101_01.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="Vaporeon">
+          <div style="display:none;align-items:center;justify-content:center;width:100%;aspect-ratio:1;font-size:2.5rem">🌊</div>
+          <div class="evol-info"><div class="evol-name">Vaporeon</div><div class="evol-price">$24.99</div></div>
+        </div>
+        <div class="evol-chip" onclick="pedirWhatsApp('Jolteon', 24.99)">
+          <img class="evol-img" src="https://raw.githubusercontent.com/AlejandroKiosko/Pokekiosko/main/fotos/pokekiosko/P10929_72-10339-101_01.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="Jolteon">
+          <div style="display:none;align-items:center;justify-content:center;width:100%;aspect-ratio:1;font-size:2.5rem">⚡</div>
+          <div class="evol-info"><div class="evol-name">Jolteon</div><div class="evol-price">$24.99</div></div>
+        </div>
+        <div class="evol-chip" onclick="pedirWhatsApp('Flareon', 24.99)">
+          <img class="evol-img" src="https://raw.githubusercontent.com/AlejandroKiosko/Pokekiosko/main/fotos/pokekiosko/P12360_73-10108-101_01.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="Flareon">
+          <div style="display:none;align-items:center;justify-content:center;width:100%;aspect-ratio:1;font-size:2.5rem">🔥</div>
+          <div class="evol-info"><div class="evol-name">Flareon</div><div class="evol-price">$24.99</div></div>
+        </div>
+        <div class="evol-chip" onclick="pedirWhatsApp('Espeon', 24.99)">
+          <img class="evol-img" src="https://raw.githubusercontent.com/AlejandroKiosko/Pokekiosko/main/fotos/pokekiosko/P11178_72-10377-101_01.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="Espeon">
+          <div style="display:none;align-items:center;justify-content:center;width:100%;aspect-ratio:1;font-size:2.5rem">🔮</div>
+          <div class="evol-info"><div class="evol-name">Espeon</div><div class="evol-price">$24.99</div></div>
+        </div>
+        <div class="evol-chip" onclick="pedirWhatsApp('Umbreon', 24.99)">
+          <img class="evol-img" src="https://raw.githubusercontent.com/AlejandroKiosko/Pokekiosko/main/fotos/pokekiosko/P10180_701E12233_01.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="Umbreon">
+          <div style="display:none;align-items:center;justify-content:center;width:100%;aspect-ratio:1;font-size:2.5rem">🌑</div>
+          <div class="evol-info"><div class="evol-name">Umbreon</div><div class="evol-price">$24.99</div></div>
+        </div>
+        <div class="evol-chip" onclick="pedirWhatsApp('Leafeon', 24.99)">
+          <img class="evol-img" src="https://raw.githubusercontent.com/AlejandroKiosko/Pokekiosko/main/fotos/pokekiosko/P11178_72-10378-101_01.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="Leafeon">
+          <div style="display:none;align-items:center;justify-content:center;width:100%;aspect-ratio:1;font-size:2.5rem">🍃</div>
+          <div class="evol-info"><div class="evol-name">Leafeon</div><div class="evol-price">$24.99</div></div>
+        </div>
+        <div class="evol-chip" onclick="pedirWhatsApp('Glaceon', 24.99)">
+          <img class="evol-img" src="https://raw.githubusercontent.com/AlejandroKiosko/Pokekiosko/main/fotos/pokekiosko/P10180_701E12229_01.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="Glaceon">
+          <div style="display:none;align-items:center;justify-content:center;width:100%;aspect-ratio:1;font-size:2.5rem">❄️</div>
+          <div class="evol-info"><div class="evol-name">Glaceon</div><div class="evol-price">$24.99</div></div>
+        </div>
+        <div class="evol-chip" onclick="pedirWhatsApp('Sylveon', 24.99)">
+          <img class="evol-img" src="https://raw.githubusercontent.com/AlejandroKiosko/Pokekiosko/main/fotos/pokekiosko/P11178_72-10376-101_01.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="Sylveon">
+          <div style="display:none;align-items:center;justify-content:center;width:100%;aspect-ratio:1;font-size:2.5rem">🎀</div>
+          <div class="evol-info"><div class="evol-name">Sylveon</div><div class="evol-price">$24.99</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CATALOG -->
+<div class="page" id="catalogo">
   <div class="section">
     <div class="section-head">
-      <h2 class="section-title">Más vendidos</h2>
-      <a href="#" class="see-all">Ver todos →</a>
+      <h2 class="section-title">Catálogo completo <span class="count" id="productCount">14 productos</span></h2>
     </div>
-    <div class="products-grid">
+    <div class="filter-bar">
+      <span class="filter-label">Filtrar:</span>
+      <button class="f-chip on" onclick="filterProducts('all',this)">Todos</button>
+      <button class="f-chip" onclick="filterProducts('peluche',this)">🧸 Peluches</button>
+      <button class="f-chip" onclick="filterProducts('eeveelution',this)">🦊 Eeveelutions</button>
+      <button class="f-chip" onclick="filterProducts('starter',this)">⭐ Starters</button>
+      <button class="f-chip" onclick="filterProducts('mochila',this)">🎒 Mochilas</button>
+    </div>
 
-      <div class="product-card">
-        <div class="card-img-wrap">
-          <span class="card-tag">Popular</span>
-          <button class="card-wish">🤍</button>
-          🦎
+    <div class="products-grid" id="productsGrid" style="margin-top:1.5rem">
+
+      <div class="product-card" data-cat="peluche" data-name="pikachu">
+        <div class="card-img-bg">
+          <span class="card-tag plush">Peluche 8"</span>
+          <button class="card-wish" onclick="toggleWish(this,'Pikachu')">🤍</button>
+          <img src="https://raw.githubusercontent.com/AlejandroKiosko/Pokekiosko/main/fotos/pokekiosko/SITTING%20PIKACHU%20.png" alt="Pikachu" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+          <span class="poke-emoji" style="display:none">⚡</span>
         </div>
         <div class="card-info">
-          <span class="card-cat">Figura Deluxe</span>
-          <span class="card-name">Charizard Mega Evolución</span>
-          <div class="card-stars"><b>4.9</b> · 248 reseñas</div>
+          <span class="card-cat">Peluche Oficial</span>
+          <span class="card-name">Pikachu</span>
+          <span class="card-size">Sitting · 8 pulgadas</span>
           <div class="card-bottom">
-            <span class="card-price">$89.900</span>
-            <button class="btn-cart">+</button>
+            <span class="card-price">$19.99 <span>USD</span></span>
+            <button class="btn-pedido" onclick="pedirWhatsApp('Pikachu',19.99)">Pedir</button>
           </div>
         </div>
       </div>
 
-      <div class="product-card">
-        <div class="card-img-wrap">
-          <span class="card-tag new">Nuevo</span>
-          <button class="card-wish">🤍</button>
-          ⚡
+      <div class="product-card" data-cat="peluche starter" data-name="bulbasaur">
+        <div class="card-img-bg">
+          <span class="card-tag plush">Peluche 6"</span>
+          <button class="card-wish" onclick="toggleWish(this,'Bulbasaur')">🤍</button>
+          <img src="https://raw.githubusercontent.com/AlejandroKiosko/Pokekiosko/main/fotos/pokekiosko/P10181_701E12228_01.jpg" alt="Bulbasaur" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+          <span class="poke-emoji" style="display:none">🌿</span>
         </div>
         <div class="card-info">
-          <span class="card-cat">Caja Coleccionista</span>
-          <span class="card-name">Pikachu Premium Box 2025</span>
-          <div class="card-stars"><b>5.0</b> · 512 reseñas</div>
+          <span class="card-cat">Peluche Oficial</span>
+          <span class="card-name">Bulbasaur</span>
+          <span class="card-size">6 pulgadas</span>
           <div class="card-bottom">
-            <span class="card-price">$124.900</span>
-            <button class="btn-cart">+</button>
+            <span class="card-price">$22.99 <span>USD</span></span>
+            <button class="btn-pedido" onclick="pedirWhatsApp('Bulbasaur',22.99)">Pedir</button>
           </div>
         </div>
       </div>
 
-      <div class="product-card">
-        <div class="card-img-wrap">
-          <span class="card-tag sale">−30%</span>
-          <button class="card-wish">🤍</button>
-          🌊
+      <div class="product-card" data-cat="peluche starter" data-name="charmander">
+        <div class="card-img-bg">
+          <span class="card-tag plush">Peluche 9"</span>
+          <button class="card-wish" onclick="toggleWish(this,'Charmander')">🤍</button>
+          <img src="https://raw.githubusercontent.com/AlejandroKiosko/Pokekiosko/main/fotos/pokekiosko/P10181_701E12226_01.jpg" alt="Charmander" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+          <span class="poke-emoji" style="display:none">🔥</span>
         </div>
         <div class="card-info">
-          <span class="card-cat">Peluche 40cm</span>
-          <span class="card-name">Blastoise Oficial</span>
-          <div class="card-stars"><b>4.7</b> · 89 reseñas</div>
+          <span class="card-cat">Peluche Oficial</span>
+          <span class="card-name">Charmander</span>
+          <span class="card-size">9 pulgadas</span>
           <div class="card-bottom">
-            <div>
-              <span class="card-price-old">$65.900</span>
-              <span class="card-price">$45.900</span>
-            </div>
-            <button class="btn-cart">+</button>
+            <span class="card-price">$22.99 <span>USD</span></span>
+            <button class="btn-pedido" onclick="pedirWhatsApp('Charmander',22.99)">Pedir</button>
           </div>
         </div>
       </div>
 
-      <div class="product-card">
-        <div class="card-img-wrap">
-          <button class="card-wish">🤍</button>
-          🌸
+      <div class="product-card" data-cat="peluche starter" data-name="squirtle">
+        <div class="card-img-bg">
+          <span class="card-tag plush">Peluche 8"</span>
+          <button class="card-wish" onclick="toggleWish(this,'Squirtle')">🤍</button>
+          <img src="https://raw.githubusercontent.com/AlejandroKiosko/Pokekiosko/main/fotos/pokekiosko/P10181_701E12227_01.jpg" alt="Squirtle" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+          <span class="poke-emoji" style="display:none">💧</span>
         </div>
         <div class="card-info">
-          <span class="card-cat">Peluche 30cm</span>
-          <span class="card-name">Clefairy Edición Limitada</span>
-          <div class="card-stars"><b>4.8</b> · 74 reseñas</div>
+          <span class="card-cat">Peluche Oficial</span>
+          <span class="card-name">Squirtle</span>
+          <span class="card-size">8 pulgadas</span>
           <div class="card-bottom">
-            <span class="card-price">$55.900</span>
-            <button class="btn-cart">+</button>
+            <span class="card-price">$22.99 <span>USD</span></span>
+            <button class="btn-pedido" onclick="pedirWhatsApp('Squirtle',22.99)">Pedir</button>
           </div>
         </div>
       </div>
 
-      <div class="product-card">
-        <div class="card-img-wrap">
-          <span class="card-tag new">Nuevo</span>
-          <button class="card-wish">🤍</button>
-          🃏
+      <div class="product-card" data-cat="peluche eeveelution" data-name="eevee">
+        <div class="card-img-bg">
+          <span class="card-tag eevee-fam">Peluche 11"</span>
+          <button class="card-wish" onclick="toggleWish(this,'Eevee')">🤍</button>
+          <img src="https://raw.githubusercontent.com/AlejandroKiosko/Pokekiosko/main/fotos/pokekiosko/P10929_72-10324-101_01.jpg" alt="Eevee" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+          <span class="poke-emoji" style="display:none">🦊</span>
         </div>
         <div class="card-info">
-          <span class="card-cat">Sobre TCG</span>
-          <span class="card-name">Pack Escarlata y Púrpura</span>
-          <div class="card-stars"><b>4.6</b> · 201 reseñas</div>
+          <span class="card-cat">Eeveelution</span>
+          <span class="card-name">Eevee</span>
+          <span class="card-size">11 pulgadas</span>
           <div class="card-bottom">
-            <span class="card-price">$12.900</span>
-            <button class="btn-cart">+</button>
+            <span class="card-price">$24.99 <span>USD</span></span>
+            <button class="btn-pedido" onclick="pedirWhatsApp('Eevee',24.99)">Pedir</button>
           </div>
         </div>
       </div>
 
-      <div class="product-card">
-        <div class="card-img-wrap">
-          <span class="card-tag sale">−20%</span>
-          <button class="card-wish">🤍</button>
-          🐲
+      <div class="product-card" data-cat="peluche eeveelution" data-name="vaporeon">
+        <div class="card-img-bg">
+          <span class="card-tag eevee-fam">Peluche 10"</span>
+          <button class="card-wish" onclick="toggleWish(this,'Vaporeon')">🤍</button>
+          <img src="https://raw.githubusercontent.com/AlejandroKiosko/Pokekiosko/main/fotos/pokekiosko/P11178_72-10373-101_01.jpg" alt="Vaporeon" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+          <span class="poke-emoji" style="display:none">🌊</span>
         </div>
         <div class="card-info">
-          <span class="card-cat">Carta Ultra Rara</span>
-          <span class="card-name">Dragonite VMAX Holográfica</span>
-          <div class="card-stars"><b>5.0</b> · 156 reseñas</div>
+          <span class="card-cat">Eeveelution</span>
+          <span class="card-name">Vaporeon</span>
+          <span class="card-size">10 pulgadas</span>
           <div class="card-bottom">
-            <div>
-              <span class="card-price-old">$95.000</span>
-              <span class="card-price">$76.000</span>
-            </div>
-            <button class="btn-cart">+</button>
+            <span class="card-price">$24.99 <span>USD</span></span>
+            <button class="btn-pedido" onclick="pedirWhatsApp('Vaporeon',24.99)">Pedir</button>
           </div>
         </div>
       </div>
 
-      <div class="product-card">
-        <div class="card-img-wrap">
-          <button class="card-wish">🤍</button>
-          🎒
+      <div class="product-card" data-cat="peluche eeveelution" data-name="flareon">
+        <div class="card-img-bg">
+          <span class="card-tag eevee-fam">Peluche 11"</span>
+          <button class="card-wish" onclick="toggleWish(this,'Flareon')">🤍</button>
+          <img src="https://raw.githubusercontent.com/AlejandroKiosko/Pokekiosko/main/fotos/pokekiosko/P12360_73-10108-101_01.jpg" alt="Flareon" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+          <span class="poke-emoji" style="display:none">🔶</span>
         </div>
         <div class="card-info">
-          <span class="card-cat">Mochila Oficial</span>
-          <span class="card-name">Bulbasaur Explorer Pack</span>
-          <div class="card-stars"><b>4.5</b> · 43 reseñas</div>
+          <span class="card-cat">Eeveelution</span>
+          <span class="card-name">Flareon</span>
+          <span class="card-size">11 pulgadas</span>
           <div class="card-bottom">
-            <span class="card-price">$79.900</span>
-            <button class="btn-cart">+</button>
+            <span class="card-price">$24.99 <span>USD</span></span>
+            <button class="btn-pedido" onclick="pedirWhatsApp('Flareon',24.99)">Pedir</button>
           </div>
         </div>
       </div>
 
-      <div class="product-card">
-        <div class="card-img-wrap">
-          <button class="card-wish">🤍</button>
-          🌙
+      <div class="product-card" data-cat="peluche eeveelution" data-name="jolteon">
+        <div class="card-img-bg">
+          <span class="card-tag eevee-fam">Peluche 12"</span>
+          <button class="card-wish" onclick="toggleWish(this,'Jolteon')">🤍</button>
+          <img src="https://raw.githubusercontent.com/AlejandroKiosko/Pokekiosko/main/fotos/pokekiosko/P10929_72-10339-101_01.jpg" alt="Jolteon" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+          <span class="poke-emoji" style="display:none">⚡</span>
         </div>
         <div class="card-info">
-          <span class="card-cat">Figura Articulada</span>
-          <span class="card-name">Lunala Legends Scale</span>
-          <div class="card-stars"><b>4.9</b> · 38 reseñas</div>
+          <span class="card-cat">Eeveelution</span>
+          <span class="card-name">Jolteon</span>
+          <span class="card-size">12 pulgadas</span>
           <div class="card-bottom">
-            <span class="card-price">$149.900</span>
-            <button class="btn-cart">+</button>
+            <span class="card-price">$24.99 <span>USD</span></span>
+            <button class="btn-pedido" onclick="pedirWhatsApp('Jolteon',24.99)">Pedir</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card" data-cat="peluche eeveelution" data-name="espeon">
+        <div class="card-img-bg">
+          <span class="card-tag eevee-fam">Peluche 10"</span>
+          <button class="card-wish" onclick="toggleWish(this,'Espeon')">🤍</button>
+          <img src="https://raw.githubusercontent.com/AlejandroKiosko/Pokekiosko/main/fotos/pokekiosko/P11178_72-10377-101_01.jpg" alt="Espeon" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+          <span class="poke-emoji" style="display:none">🔮</span>
+        </div>
+        <div class="card-info">
+          <span class="card-cat">Eeveelution</span>
+          <span class="card-name">Espeon</span>
+          <span class="card-size">10 pulgadas</span>
+          <div class="card-bottom">
+            <span class="card-price">$24.99 <span>USD</span></span>
+            <button class="btn-pedido" onclick="pedirWhatsApp('Espeon',24.99)">Pedir</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card" data-cat="peluche eeveelution" data-name="umbreon">
+        <div class="card-img-bg">
+          <span class="card-tag eevee-fam">Peluche 13"</span>
+          <button class="card-wish" onclick="toggleWish(this,'Umbreon')">🤍</button>
+          <img src="https://raw.githubusercontent.com/AlejandroKiosko/Pokekiosko/main/fotos/pokekiosko/P10180_701E12233_01.jpg" alt="Umbreon" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+          <span class="poke-emoji" style="display:none">🌑</span>
+        </div>
+        <div class="card-info">
+          <span class="card-cat">Eeveelution</span>
+          <span class="card-name">Umbreon</span>
+          <span class="card-size">13 pulgadas · el más grande</span>
+          <div class="card-bottom">
+            <span class="card-price">$24.99 <span>USD</span></span>
+            <button class="btn-pedido" onclick="pedirWhatsApp('Umbreon',24.99)">Pedir</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card" data-cat="peluche eeveelution" data-name="leafeon">
+        <div class="card-img-bg">
+          <span class="card-tag eevee-fam">Peluche 11"</span>
+          <button class="card-wish" onclick="toggleWish(this,'Leafeon')">🤍</button>
+          <img src="https://raw.githubusercontent.com/AlejandroKiosko/Pokekiosko/main/fotos/pokekiosko/P11178_72-10378-101_01.jpg" alt="Leafeon" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+          <span class="poke-emoji" style="display:none">🍃</span>
+        </div>
+        <div class="card-info">
+          <span class="card-cat">Eeveelution</span>
+          <span class="card-name">Leafeon</span>
+          <span class="card-size">11 pulgadas</span>
+          <div class="card-bottom">
+            <span class="card-price">$24.99 <span>USD</span></span>
+            <button class="btn-pedido" onclick="pedirWhatsApp('Leafeon',24.99)">Pedir</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card" data-cat="peluche eeveelution" data-name="glaceon">
+        <div class="card-img-bg">
+          <span class="card-tag eevee-fam">Peluche 11"</span>
+          <button class="card-wish" onclick="toggleWish(this,'Glaceon')">🤍</button>
+          <img src="https://raw.githubusercontent.com/AlejandroKiosko/Pokekiosko/main/fotos/pokekiosko/P10180_701E12229_01.jpg" alt="Glaceon" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+          <span class="poke-emoji" style="display:none">❄️</span>
+        </div>
+        <div class="card-info">
+          <span class="card-cat">Eeveelution</span>
+          <span class="card-name">Glaceon</span>
+          <span class="card-size">11 pulgadas</span>
+          <div class="card-bottom">
+            <span class="card-price">$24.99 <span>USD</span></span>
+            <button class="btn-pedido" onclick="pedirWhatsApp('Glaceon',24.99)">Pedir</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card" data-cat="peluche eeveelution" data-name="sylveon">
+        <div class="card-img-bg">
+          <span class="card-tag eevee-fam">Peluche 11"</span>
+          <button class="card-wish" onclick="toggleWish(this,'Sylveon')">🤍</button>
+          <img src="https://raw.githubusercontent.com/AlejandroKiosko/Pokekiosko/main/fotos/pokekiosko/P11178_72-10376-101_01.jpg" alt="Sylveon" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+          <span class="poke-emoji" style="display:none">🎀</span>
+        </div>
+        <div class="card-info">
+          <span class="card-cat">Eeveelution</span>
+          <span class="card-name">Sylveon</span>
+          <span class="card-size">11 pulgadas</span>
+          <div class="card-bottom">
+            <span class="card-price">$24.99 <span>USD</span></span>
+            <button class="btn-pedido" onclick="pedirWhatsApp('Sylveon',24.99)">Pedir</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card" data-cat="mochila" data-name="gengar backpack">
+        <div class="card-img-bg" style="background:#1a1a2e">
+          <span class="card-tag bag">Mochila</span>
+          <button class="card-wish" onclick="toggleWish(this,'Gengar Backpack')">🤍</button>
+          <img src="https://raw.githubusercontent.com/AlejandroKiosko/Pokekiosko/main/fotos/pokekiosko/GENGAR%20FRONT.jpg" alt="Gengar Backpack" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+          <span class="poke-emoji" style="display:none">👻</span>
+        </div>
+        <div class="card-info">
+          <span class="card-cat">Mochila Peluche</span>
+          <span class="card-name">Gengar Backpack</span>
+          <span class="card-size">Trainer Gear · Tamaño real</span>
+          <div class="card-bottom">
+            <span class="card-price">$34.99 <span>USD</span></span>
+            <button class="btn-pedido" onclick="pedirWhatsApp('Gengar Backpack',34.99)">Pedir</button>
           </div>
         </div>
       </div>
@@ -735,168 +587,110 @@
   </div>
 </div>
 
-<div class="promo-band">
-  <div class="page">
-    <div class="promo-band-inner">
-      <div class="promo-block">
-        <div class="promo-icon">🃏</div>
-        <div class="promo-tag">Novedades</div>
-        <h3>Cajas Élite 2025</h3>
-        <p>Las últimas cajas de coleccionista con cartas exclusivas y holográficas.</p>
-        <a href="#" class="promo-link">Ver colección →</a>
-      </div>
-      <div class="promo-block">
-        <div class="promo-icon">🔥</div>
-        <div class="promo-tag">Flash Sale</div>
-        <h3>Hasta 40% OFF</h3>
-        <p>Ofertas por tiempo limitado en cartas seleccionadas y figuras.</p>
-        <a href="#" class="promo-link">Ver ofertas →</a>
-      </div>
-      <div class="promo-block">
-        <div class="promo-icon">🎮</div>
-        <div class="promo-tag">Videojuegos</div>
-        <h3>Scarlet & Violet</h3>
-        <p>Los últimos títulos de Nintendo Switch con envío inmediato.</p>
-        <a href="#" class="promo-link">Comprar →</a>
-      </div>
+<!-- GENGAR BANNER -->
+<div class="page" id="mochila">
+  <div class="gengar-banner">
+    <div>
+      <h3>La mochila Gengar que todos quieren.</h3>
+      <p>Mochila de peluche oficial Pokémon Trainer Gear. Ideal para el día a día o para coleccionar.</p>
+    </div>
+    <div class="gengar-right">
+      <img class="gengar-img" src="https://raw.githubusercontent.com/AlejandroKiosko/Pokekiosko/main/fotos/pokekiosko/GENGAR%20FRONT.jpg" alt="Gengar" onerror="this.style.fontSize='4rem';this.outerHTML='<span style=font-size:4rem>👻</span>'">
+      <button class="btn-gengar" onclick="pedirWhatsApp('Gengar Backpack',34.99)">Pedir por WhatsApp</button>
     </div>
   </div>
 </div>
 
-<div class="page">
+<!-- HOW IT WORKS -->
+<div class="page" id="pedido">
   <div class="section">
     <div class="section-head">
-      <h2 class="section-title">Tienda por tipo</h2>
-      <a href="#" class="see-all">Ver todos →</a>
+      <h2 class="section-title">¿Cómo hacer un pedido?</h2>
     </div>
-    <div class="types-grid">
-      <a class="type-cell" href="#"><div class="type-emoji">🔥</div><div class="type-label">Fuego</div></a>
-      <a class="type-cell" href="#"><div class="type-emoji">💧</div><div class="type-label">Agua</div></a>
-      <a class="type-cell" href="#"><div class="type-emoji">🌿</div><div class="type-label">Planta</div></a>
-      <a class="type-cell" href="#"><div class="type-emoji">⚡</div><div class="type-label">Eléctrico</div></a>
-      <a class="type-cell" href="#"><div class="type-emoji">🔮</div><div class="type-label">Psíquico</div></a>
-      <a class="type-cell" href="#"><div class="type-emoji">❄️</div><div class="type-label">Hielo</div></a>
-      <a class="type-cell" href="#"><div class="type-emoji">🐲</div><div class="type-label">Dragón</div></a>
-      <a class="type-cell" href="#"><div class="type-emoji">🌑</div><div class="type-label">Siniestro</div></a>
-      <a class="type-cell" href="#"><div class="type-emoji">✨</div><div class="type-label">Hada</div></a>
-      <a class="type-cell" href="#"><div class="type-emoji">🥊</div><div class="type-label">Lucha</div></a>
-      <a class="type-cell" href="#"><div class="type-emoji">👻</div><div class="type-label">Fantasma</div></a>
-      <a class="type-cell" href="#"><div class="type-emoji">⭐</div><div class="type-label">Normal</div></a>
-    </div>
-  </div>
-</div>
-
-<div class="page">
-  <div class="section" style="border-bottom:none;padding-bottom:0;">
-    <div class="perks-grid">
-      <div class="perk">
-        <div class="perk-icon">🚚</div>
-        <div><h4>Envío gratis</h4><p>En pedidos sobre $50.000 a todo el país</p></div>
+    <div class="how-grid">
+      <div class="how-item">
+        <div class="how-num">01</div>
+        <h4>Elige tu Pokémon</h4>
+        <p>Navega el catálogo y haz clic en "Pedir". Se abrirá WhatsApp automáticamente con el mensaje listo.</p>
       </div>
-      <div class="perk">
-        <div class="perk-icon">✅</div>
-        <div><h4>Productos originales</h4><p>100% auténticos y certificados por Nintendo</p></div>
+      <div class="how-item">
+        <div class="how-num">02</div>
+        <h4>Confirma tu pedido</h4>
+        <p>Cuéntanos tu dirección y cantidad. Calculamos el envío y te damos el total final con claridad.</p>
       </div>
-      <div class="perk">
-        <div class="perk-icon">🔄</div>
-        <div><h4>Cambios fáciles</h4><p>30 días para cambios sin preguntas</p></div>
+      <div class="how-item">
+        <div class="how-num">03</div>
+        <h4>Paga y recibe</h4>
+        <p>Aceptamos Nequi, Daviplata y transferencia. Tu pedido llega en 3 a 7 días hábiles a toda Colombia.</p>
       </div>
-      <div class="perk">
-        <div class="perk-icon">💬</div>
-        <div><h4>Soporte por WhatsApp</h4><p>Atención rápida de lunes a sábado</p></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="page">
-  <div class="newsletter">
-    <h2>Mantente al día</h2>
-    <p>Suscríbete y recibe novedades, ofertas y alertas de stock antes que nadie.</p>
-    <div class="nl-form">
-      <input type="email" placeholder="tu@correo.com">
-      <button>Suscribirme</button>
     </div>
   </div>
 </div>
 
 <footer>
-  <div class="page">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <a href="#" class="logo">
-          <svg class="logo-mark" viewBox="0 0 30 30" fill="none"><circle cx="15" cy="15" r="14" fill="white" stroke="#e5e5e5" stroke-width="1"/><path d="M1,15 A14,14 0 0,1 29,15 Z" fill="#D63B2F"/><rect x="1" y="13.5" width="28" height="3" fill="#111"/><circle cx="15" cy="15" r="4" fill="white" stroke="#111" stroke-width="2"/></svg>
-          <span class="logo-name">Poke<em>Kiosko</em></span>
-        </a>
-        <p>La tienda Pokémon más completa de Colombia. Cartas, figuras, peluches y más.</p>
-        <div class="social-row">
-          <a class="social-btn" href="#">📘</a>
-          <a class="social-btn" href="#">📸</a>
-          <a class="social-btn" href="#">🐦</a>
-          <a class="social-btn" href="#">▶️</a>
-        </div>
-      </div>
-      <div>
-        <h5>Productos</h5>
-        <ul>
-          <li><a href="#">Cartas TCG</a></li>
-          <li><a href="#">Figuras</a></li>
-          <li><a href="#">Peluches</a></li>
-          <li><a href="#">Videojuegos</a></li>
-          <li><a href="#">Accesorios</a></li>
-        </ul>
-      </div>
-      <div>
-        <h5>Mi cuenta</h5>
-        <ul>
-          <li><a href="#">Ingresar</a></li>
-          <li><a href="#">Registrarse</a></li>
-          <li><a href="#">Mis pedidos</a></li>
-          <li><a href="#">Lista de deseos</a></li>
-          <li><a href="#">Puntos y rewards</a></li>
-        </ul>
-      </div>
-      <div>
-        <h5>Ayuda</h5>
-        <ul>
-          <li><a href="#">Centro de ayuda</a></li>
-          <li><a href="#">Envíos</a></li>
-          <li><a href="#">Devoluciones</a></li>
-          <li><a href="#">Contáctanos</a></li>
-          <li><a href="#">WhatsApp</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <span>© 2025 PokeKiosko · Pokémon es marca registrada de Nintendo / Game Freak.</span>
-      <div class="pay-row">
-        <span class="pay-chip">PSE</span>
-        <span class="pay-chip">Visa</span>
-        <span class="pay-chip">MC</span>
-        <span class="pay-chip">Nequi</span>
-        <span class="pay-chip">Daviplata</span>
-      </div>
+  <div class="footer-inner">
+    <span>© 2025 PokeKiosko · Pokémon es marca registrada de Nintendo / Game Freak.</span>
+    <div class="pay-row">
+      <span class="pay-chip">Nequi</span>
+      <span class="pay-chip">Daviplata</span>
+      <span class="pay-chip">PSE</span>
+      <span class="pay-chip">Transferencia</span>
     </div>
   </div>
 </footer>
 
-<button class="scroll-top" id="st" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<a class="wa-float" href="https://wa.me/573000000000?text=Hola!%20Quiero%20hacer%20un%20pedido%20🎉" target="_blank">💬</a>
+<div class="toast" id="toast"></div>
 
 <script>
-  document.querySelectorAll('.card-wish').forEach(b => b.addEventListener('click', e => {
-    e.stopPropagation();
-    b.textContent = b.textContent === '🤍' ? '❤️' : '🤍';
-  }));
+  const BASE = 'https://raw.githubusercontent.com/AlejandroKiosko/Pokekiosko/main/fotos/pokekiosko/';
 
-  document.querySelectorAll('.btn-cart').forEach(b => b.addEventListener('click', e => {
-    e.stopPropagation();
-    b.textContent = '✓'; b.style.background = '#16a34a';
-    setTimeout(() => { b.textContent = '+'; b.style.background = ''; }, 1200);
-  }));
+  function filterProducts(cat, btn) {
+    document.querySelectorAll('.f-chip').forEach(c => c.classList.remove('on'));
+    btn.classList.add('on');
+    let visible = 0;
+    document.querySelectorAll('.product-card').forEach(card => {
+      const show = cat === 'all' || (card.dataset.cat||'').includes(cat);
+      card.classList.toggle('hidden', !show);
+      if (show) visible++;
+    });
+    document.getElementById('productCount').textContent = visible + ' producto' + (visible!==1?'s':'');
+  }
 
-  const st = document.getElementById('st');
-  window.addEventListener('scroll', () => st.classList.toggle('visible', window.scrollY > 400));
+  document.getElementById('searchInput').addEventListener('input', function() {
+    const q = this.value.toLowerCase().trim();
+    let visible = 0;
+    document.querySelectorAll('.product-card').forEach(card => {
+      const show = !q || (card.dataset.name||'').includes(q);
+      card.classList.toggle('hidden', !show);
+      if (show) visible++;
+    });
+    document.getElementById('productCount').textContent = visible + ' producto' + (visible!==1?'s':'');
+    document.querySelectorAll('.f-chip').forEach((c,i) => c.classList.toggle('on', i===0));
+  });
+
+  let wishCount = 0;
+  function toggleWish(btn, name) {
+    const isWished = btn.textContent === '❤️';
+    btn.textContent = isWished ? '🤍' : '❤️';
+    wishCount += isWished ? -1 : 1;
+    const badge = document.getElementById('wishBadge');
+    badge.textContent = wishCount;
+    badge.style.display = wishCount > 0 ? 'flex' : 'none';
+    if (!isWished) showToast('❤️ ' + name + ' añadido a favoritos');
+  }
+
+  function pedirWhatsApp(product, price) {
+    const msg = encodeURIComponent('Hola PokeKiosko! 👋\n\nQuiero pedir:\n🎯 ' + product + ' — USD $' + price + '\n\n¿Tienen disponible? ¿Cuál es el total con envío a Colombia?');
+    window.open('https://wa.me/573000000000?text=' + msg, '_blank');
+  }
+
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2500);
+  }
 </script>
-
 </body>
 </html>
