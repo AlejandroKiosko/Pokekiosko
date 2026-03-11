@@ -46,25 +46,26 @@
     .page { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
 
     /* HERO */
-    .hero { border-bottom: 1px solid var(--border); display: grid; grid-template-columns: 1fr 380px; min-height: 320px; overflow: hidden; }
-    .hero-text { padding: 4rem 3rem 4rem 0; display: flex; flex-direction: column; justify-content: center; animation: fadeUp 0.6s ease both; }
-    .hero-label { display: inline-flex; align-items: center; gap: 6px; font-size: 0.75rem; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--red); margin-bottom: 1.2rem; }
-    .hero-label::before { content: ''; width: 18px; height: 2px; background: var(--red); }
-    .hero h1 { font-family: 'DM Serif Display', serif; font-size: clamp(2.2rem, 3.5vw, 3.6rem); line-height: 1.1; letter-spacing: -1px; margin-bottom: 1rem; }
-    .hero p { color: var(--mid); font-size: 0.95rem; line-height: 1.7; max-width: 380px; margin-bottom: 2rem; }
+    .hero { border-bottom: 1px solid var(--border); display: grid; grid-template-columns: 1fr 380px; min-height: 320px; overflow: hidden; position: relative; }
+    .hero::before { content: ''; position: absolute; inset: 0; background-image: url('https://raw.githubusercontent.com/AlejandroKiosko/Pokekiosko/main/fotos/pokekiosko/fondo_charmeleon_pikachu_psyduck.jpg'); background-size: cover; background-position: center; filter: blur(6px) brightness(0.75); transform: scale(1.04); z-index: 0; }
+    .hero-text { padding: 4rem 3rem 4rem 0; display: flex; flex-direction: column; justify-content: center; animation: fadeUp 0.6s ease both; position: relative; z-index: 2; }
+    .hero-label { display: inline-flex; align-items: center; gap: 6px; font-size: 0.75rem; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.85); margin-bottom: 1.2rem; }
+    .hero-label::before { content: ''; width: 18px; height: 2px; background: rgba(255,255,255,0.85); }
+    .hero h1 { font-family: 'DM Serif Display', serif; font-size: clamp(2.2rem, 3.5vw, 3.6rem); line-height: 1.1; letter-spacing: -1px; margin-bottom: 1rem; color: white; text-shadow: 0 2px 12px rgba(0,0,0,0.3); }
+    .hero p { color: rgba(255,255,255,0.82); font-size: 0.95rem; line-height: 1.7; max-width: 380px; margin-bottom: 2rem; }
     .hero-btns { display: flex; gap: 0.75rem; }
-    .btn-primary { background: var(--dark); color: white; border: none; border-radius: 8px; padding: 12px 26px; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; font-weight: 500; cursor: pointer; transition: opacity 0.2s; text-decoration: none; display: inline-block; }
-    .btn-primary:hover { opacity: 0.82; }
-    .btn-outline { background: none; color: var(--dark); border: 1.5px solid var(--border); border-radius: 8px; padding: 12px 26px; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; font-weight: 500; cursor: pointer; transition: border-color 0.2s; }
-    .btn-outline:hover { border-color: var(--dark); }
-    .hero-visual { background: var(--light); border-left: 1px solid var(--border); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+    .btn-primary { background: rgba(255,255,255,0.15); color: white; border: 1.5px solid rgba(255,255,255,0.5); border-radius: 8px; padding: 12px 26px; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; font-weight: 600; cursor: pointer; transition: background 0.2s; text-decoration: none; display: inline-block; backdrop-filter: blur(4px); }
+    .btn-primary:hover { background: rgba(255,255,255,0.28); }
+    .btn-outline { background: rgba(255,255,255,0.08); color: white; border: 1.5px solid rgba(255,255,255,0.4); border-radius: 8px; padding: 12px 26px; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; font-weight: 500; cursor: pointer; transition: border-color 0.2s; backdrop-filter: blur(4px); }
+    .btn-outline:hover { border-color: white; }
+    .hero-visual { background: transparent; border-left: 1px solid rgba(255,255,255,0.15); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; z-index: 1; }
 
     /* CAROUSEL */
     .carousel { width: 100%; height: 100%; position: relative; min-height: 340px; }
-    .carousel-bg { position: absolute; inset: 0; background-image: url('https://raw.githubusercontent.com/AlejandroKiosko/Pokekiosko/main/fotos/pokekiosko/fondo_charmeleon_pikachu_psyduck.jpg'); background-size: cover; background-position: center; filter: blur(6px) brightness(0.92); transform: scale(1.04); z-index: 0; }
+    .carousel-bg { display: none; }
     .carousel-slide { position: absolute; inset: 0; opacity: 0; transition: opacity 0.9s ease; display: flex; align-items: center; justify-content: center; z-index: 1; }
     .carousel-slide.active { opacity: 1; }
-    .carousel-slide img { width: 72%; height: 72%; object-fit: contain; mix-blend-mode: multiply; filter: drop-shadow(0 16px 32px rgba(0,0,0,0.18)); position: relative; z-index: 2; }
+    .carousel-slide img { width: 72%; height: 72%; object-fit: contain; mix-blend-mode: normal; filter: drop-shadow(0 16px 40px rgba(0,0,0,0.35)); position: relative; z-index: 2; }
     .carousel-slide .slide-label { position: absolute; bottom: 1.5rem; left: 50%; transform: translateX(-50%); background: rgba(255,255,255,0.85); border: 1px solid rgba(255,255,255,0.6); border-radius: 100px; padding: 4px 14px; font-size: 0.75rem; font-weight: 600; color: var(--dark); white-space: nowrap; backdrop-filter: blur(8px); z-index: 3; }
     .carousel-dots { position: absolute; bottom: 0.6rem; left: 50%; transform: translateX(-50%); display: flex; gap: 5px; z-index: 4; }
     .carousel-dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,0.5); transition: background 0.3s, transform 0.3s; cursor: pointer; }
@@ -220,7 +221,7 @@
       .hero-text { padding: 2.5rem 1rem 1.5rem; text-align: center; align-items: center; order: 2; }
       .hero-text p { margin: 0 auto 1.5rem; }
       .hero-btns { justify-content: center; }
-      .hero-visual { display: flex; order: 1; min-height: 300px; border-left: none; border-bottom: 1px solid var(--border); }
+      .hero-visual { display: flex; order: 1; min-height: 300px; border-left: none; border-bottom: 1px solid rgba(255,255,255,0.15); }
       .carousel { min-height: 300px; }
       .carousel-slide img { width: 88%; height: 88%; }
       .trust-inner { grid-template-columns: repeat(2,1fr); }
