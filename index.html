@@ -57,9 +57,16 @@
     .btn-outline { background: none; color: var(--dark); border: 1.5px solid var(--border); border-radius: 8px; padding: 12px 26px; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; font-weight: 500; cursor: pointer; transition: border-color 0.2s; }
     .btn-outline:hover { border-color: var(--dark); }
     .hero-visual { background: var(--light); border-left: 1px solid var(--border); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
-    .hero-visual::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 60% 40%, rgba(214,59,47,0.07) 0%, transparent 65%); }
-    .pokeball-svg { width: 200px; height: 200px; animation: float 4s ease-in-out infinite; filter: drop-shadow(0 20px 36px rgba(0,0,0,0.1)); }
-    @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-14px)} }
+
+    /* CAROUSEL */
+    .carousel { width: 100%; height: 100%; position: relative; min-height: 400px; }
+    .carousel-slide { position: absolute; inset: 0; opacity: 0; transition: opacity 0.9s ease; display: flex; align-items: center; justify-content: center; background: var(--light); }
+    .carousel-slide.active { opacity: 1; }
+    .carousel-slide img { width: 72%; height: 72%; object-fit: contain; filter: drop-shadow(0 16px 32px rgba(0,0,0,0.13)); }
+    .carousel-slide .slide-label { position: absolute; bottom: 1.5rem; left: 50%; transform: translateX(-50%); background: rgba(255,255,255,0.9); border: 1px solid var(--border); border-radius: 100px; padding: 4px 14px; font-size: 0.75rem; font-weight: 600; color: var(--dark); white-space: nowrap; backdrop-filter: blur(4px); }
+    .carousel-dots { position: absolute; bottom: 0.6rem; left: 50%; transform: translateX(-50%); display: flex; gap: 5px; }
+    .carousel-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--border); transition: background 0.3s, transform 0.3s; cursor: pointer; }
+    .carousel-dot.active { background: var(--dark); transform: scale(1.3); }
     @keyframes fadeUp { from{opacity:0;transform:translateY(14px)} to{opacity:1;transform:translateY(0)} }
 
     /* TRUST */
@@ -256,10 +263,10 @@
 
 <nav>
   <div class="nav-inner">
-    <a class="active" onclick="scrollTo('top')">Inicio</a>
-    <a onclick="scrollTo('catalogo')">Peluches</a>
-    <a onclick="scrollTo('mochila')">Mochila Gengar</a>
-    <a onclick="scrollTo('pedido')">¿Cómo pedir?</a>
+    <a class="active" onclick="smoothScroll('top')">Inicio</a>
+    <a onclick="smoothScroll('catalogo')">Peluches</a>
+    <a onclick="smoothScroll('mochila')">Mochila Gengar</a>
+    <a onclick="smoothScroll('pedido')">¿Cómo pedir?</a>
   </div>
 </nav>
 
@@ -271,19 +278,12 @@
       <h1>Los más adorables del mundo Pokémon.</h1>
       <p>Peluches 100% oficiales de Pokémon Center. Envío a toda Colombia. Haz tu pedido por WhatsApp.</p>
       <div class="hero-btns">
-        <button class="btn-primary" onclick="scrollTo('catalogo')">Ver catálogo</button>
-        <button class="btn-outline" onclick="scrollTo('pedido')">¿Cómo pedir?</button>
+        <button class="btn-primary" onclick="smoothScroll('catalogo')">Ver catálogo</button>
+        <button class="btn-outline" onclick="smoothScroll('pedido')">¿Cómo pedir?</button>
       </div>
     </div>
     <div class="hero-visual">
-      <svg class="pokeball-svg" viewBox="0 0 200 200">
-        <circle cx="100" cy="100" r="96" fill="white" stroke="#ddd" stroke-width="2"/>
-        <path d="M4,100 A96,96 0 0,1 196,100 Z" fill="#D63B2F"/>
-        <rect x="4" y="95" width="192" height="10" fill="#111"/>
-        <circle cx="100" cy="100" r="22" fill="#111"/>
-        <circle cx="100" cy="100" r="15" fill="white"/>
-        <circle cx="95" cy="95" r="5" fill="rgba(255,255,255,0.5)"/>
-      </svg>
+      <div class="carousel" id="heroCarousel"></div>
     </div>
   </div>
 </div>
@@ -401,11 +401,11 @@
 
 <script>
 // SMOOTH SCROLL
-function scrollTo(id) {
+function smoothScroll(id) {
   if (id === 'top') { window.scrollTo({ top: 0, behavior: 'smooth' }); return; }
   const el = document.getElementById(id);
   if (!el) return;
-  const offset = 80; // header height
+  const offset = 80;
   const top = el.getBoundingClientRect().top + window.scrollY - offset;
   window.scrollTo({ top, behavior: 'smooth' });
 }
@@ -438,7 +438,7 @@ const PRODUCTS = [
     desc:'La evolución acuática de Eevee con sus aletas y cola características.',
     features:['Peluche oficial Pokémon Center','10 pulgadas de alto','Material: tela suave premium','Parte de la colección Eeveelutions'] },
   { id:6, name:'Flareon', cat:'peluche eeveelution', catLabel:'Eeveelution', tag:'Peluche 11"', tagClass:'eevee-fam', size:'11 pulgadas', price:24.99,
-    imgs:['P12360_73-10109-101_01.jpg','P12360_73-10109-101_02.jpg','P12360_73-10109-101_03.jpg'], emoji:'🔥',
+    imgs:['P10180_701E12234_01.jpg','P10180_701E12234_02.jpg','P10180_701E12234_03.jpg'], emoji:'🔥',
     desc:'La evolución de fuego de Eevee con su melena esponjosa y cola flamante.',
     features:['Peluche oficial Pokémon Center','11 pulgadas de alto','Material: tela suave premium','Parte de la colección Eeveelutions'] },
   { id:7, name:'Jolteon', cat:'peluche eeveelution', catLabel:'Eeveelution', tag:'Peluche 12"', tagClass:'eevee-fam', size:'12 pulgadas', price:24.99,
@@ -472,7 +472,11 @@ const PRODUCTS = [
   { id:14, name:'Eevee Set LEGO', cat:'lego', catLabel:'Set LEGO Pokémon', tag:'LEGO', tagClass:'bag', size:'Set de construcción oficial', price:49.99,
     imgs:['P12360_73-10108-101_01.jpg','P12360_73-10108-101_02.jpg','P12360_73-10108-101_03.jpg','P12360_73-10108-101_04.jpg'], emoji:'🧱',
     desc:'Set de construcción LEGO oficial con licencia Pokémon. Construye tu propio Eevee pieza a pieza.',
-    features:['Set LEGO oficial con licencia Pokémon','Figura articulada de Eevee','Incluye instrucciones de construcción','Ideal para coleccionistas y fans de LEGO','Compatible con otros sets LEGO'] }
+    features:['Set LEGO oficial con licencia Pokémon','Figura articulada de Eevee','Incluye instrucciones de construcción','Ideal para coleccionistas y fans de LEGO'] },
+  { id:15, name:'Pikachu Set LEGO', cat:'lego', catLabel:'Set LEGO Pokémon', tag:'LEGO', tagClass:'bag', size:'Set de construcción oficial', price:49.99,
+    imgs:['P12360_73-10109-101_01.jpg','P12360_73-10109-101_02.jpg','P12360_73-10109-101_03.jpg','P12360_73-10109-101_04.jpg'], emoji:'🧱',
+    desc:'Set de construcción LEGO oficial de Pikachu con licencia Pokémon. Una figura espectacular para armar y exhibir.',
+    features:['Set LEGO oficial con licencia Pokémon','Figura articulada de Pikachu','Incluye instrucciones de construcción','Ideal para coleccionistas y fans de LEGO'] }
 ];
 
 // RENDER PRODUCT CARDS
@@ -500,6 +504,35 @@ function renderProducts(list) {
 }
 
 renderProducts(PRODUCTS);
+
+// HERO CAROUSEL
+(function() {
+  const slides = [
+    { img: 'SITTING%20PIKACHU%20.png',       label: 'Pikachu' },
+    { img: 'P10929_72-10324-101_01.jpg',      label: 'Eevee' },
+    { img: 'GENGAR%20FRONT.jpg',              label: 'Gengar Backpack' },
+    { img: 'P10180_701E12233_01.jpg',         label: 'Umbreon' },
+    { img: 'P10181_701E12226_01.jpg',         label: 'Charmander' },
+    { img: 'P11178_72-10376-101_01.jpg',      label: 'Sylveon' },
+    { img: 'P10181_701E12228_01.jpg',         label: 'Bulbasaur' },
+    { img: 'P11178_72-10373-101_01.jpg',      label: 'Vaporeon' },
+  ];
+  const c = document.getElementById('heroCarousel');
+  c.innerHTML = slides.map((s,i) => `
+    <div class="carousel-slide${i===0?' active':''}">
+      <img src="${BASE}${s.img}" alt="${s.label}" onerror="this.parentElement.style.display='none'">
+      <span class="slide-label">${s.label}</span>
+    </div>`).join('') +
+    `<div class="carousel-dots">${slides.map((_,i)=>`<div class="carousel-dot${i===0?' active':''}" onclick="goSlide(${i})"></div>`).join('')}</div>`;
+
+  let cur = 0;
+  window.goSlide = function(n) {
+    document.querySelectorAll('.carousel-slide').forEach((s,i) => s.classList.toggle('active', i===n));
+    document.querySelectorAll('.carousel-dot').forEach((d,i) => d.classList.toggle('active', i===n));
+    cur = n;
+  };
+  setInterval(() => goSlide((cur + 1) % slides.length), 3000);
+})();
 
 // FILTER
 function filterProducts(cat, btn) {
