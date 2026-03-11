@@ -11,7 +11,7 @@
       --light: #f8f7f5; --white: #fff; --border: #e8e5e0; --yellow: #F5C842;
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: auto; } /* handled via JS for smooth easing */
     body { font-family: 'DM Sans', sans-serif; background: var(--white); color: var(--dark); font-size: 15px; }
 
     /* HEADER */
@@ -37,7 +37,7 @@
     nav { border-bottom: 1px solid var(--border); }
     .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 2rem; display: flex; overflow-x: auto; }
     .nav-inner::-webkit-scrollbar { display: none; }
-    nav a { color: var(--mid); text-decoration: none; font-size: 0.85rem; font-weight: 500; padding: 11px 16px; white-space: nowrap; transition: color 0.15s; position: relative; }
+    nav a { color: var(--mid); text-decoration: none; font-size: 0.85rem; font-weight: 500; padding: 11px 16px; white-space: nowrap; transition: color 0.15s; position: relative; cursor: pointer; }
     nav a:hover { color: var(--dark); }
     nav a.active { color: var(--dark); font-weight: 600; }
     nav a.active::after { content: ''; position: absolute; bottom: 0; left: 16px; right: 16px; height: 2px; background: var(--dark); }
@@ -256,10 +256,10 @@
 
 <nav>
   <div class="nav-inner">
-    <a href="#" class="active">Inicio</a>
-    <a href="#catalogo">Peluches</a>
-    <a href="#mochila">Mochila Gengar</a>
-    <a href="#pedido">¿Cómo pedir?</a>
+    <a class="active" onclick="scrollTo('top')">Inicio</a>
+    <a onclick="scrollTo('catalogo')">Peluches</a>
+    <a onclick="scrollTo('mochila')">Mochila Gengar</a>
+    <a onclick="scrollTo('pedido')">¿Cómo pedir?</a>
   </div>
 </nav>
 
@@ -271,8 +271,8 @@
       <h1>Los más adorables del mundo Pokémon.</h1>
       <p>Peluches 100% oficiales de Pokémon Center. Envío a toda Colombia. Haz tu pedido por WhatsApp.</p>
       <div class="hero-btns">
-        <a href="#catalogo" class="btn-primary">Ver catálogo</a>
-        <button class="btn-outline" onclick="document.getElementById('pedido').scrollIntoView({behavior:'smooth'})">¿Cómo pedir?</button>
+        <button class="btn-primary" onclick="scrollTo('catalogo')">Ver catálogo</button>
+        <button class="btn-outline" onclick="scrollTo('pedido')">¿Cómo pedir?</button>
       </div>
     </div>
     <div class="hero-visual">
@@ -311,6 +311,7 @@
       <button class="f-chip" onclick="filterProducts('eeveelution',this)">🦊 Eeveelutions</button>
       <button class="f-chip" onclick="filterProducts('starter',this)">⭐ Starters</button>
       <button class="f-chip" onclick="filterProducts('mochila',this)">🎒 Mochilas</button>
+      <button class="f-chip" onclick="filterProducts('lego',this)">🧱 LEGO</button>
     </div>
     <div class="products-grid" id="productsGrid" style="margin-top:1.5rem"></div>
   </div>
@@ -399,6 +400,16 @@
 </div>
 
 <script>
+// SMOOTH SCROLL
+function scrollTo(id) {
+  if (id === 'top') { window.scrollTo({ top: 0, behavior: 'smooth' }); return; }
+  const el = document.getElementById(id);
+  if (!el) return;
+  const offset = 80; // header height
+  const top = el.getBoundingClientRect().top + window.scrollY - offset;
+  window.scrollTo({ top, behavior: 'smooth' });
+}
+
 const BASE = 'https://raw.githubusercontent.com/AlejandroKiosko/Pokekiosko/main/fotos/pokekiosko/';
 
 const PRODUCTS = [
@@ -427,7 +438,7 @@ const PRODUCTS = [
     desc:'La evolución acuática de Eevee con sus aletas y cola características.',
     features:['Peluche oficial Pokémon Center','10 pulgadas de alto','Material: tela suave premium','Parte de la colección Eeveelutions'] },
   { id:6, name:'Flareon', cat:'peluche eeveelution', catLabel:'Eeveelution', tag:'Peluche 11"', tagClass:'eevee-fam', size:'11 pulgadas', price:24.99,
-    imgs:['P12360_73-10108-101_01.jpg','P12360_73-10108-101_02.jpg','P12360_73-10108-101_03.jpg'], emoji:'🔥',
+    imgs:['P12360_73-10109-101_01.jpg','P12360_73-10109-101_02.jpg','P12360_73-10109-101_03.jpg'], emoji:'🔥',
     desc:'La evolución de fuego de Eevee con su melena esponjosa y cola flamante.',
     features:['Peluche oficial Pokémon Center','11 pulgadas de alto','Material: tela suave premium','Parte de la colección Eeveelutions'] },
   { id:7, name:'Jolteon', cat:'peluche eeveelution', catLabel:'Eeveelution', tag:'Peluche 12"', tagClass:'eevee-fam', size:'12 pulgadas', price:24.99,
@@ -457,7 +468,11 @@ const PRODUCTS = [
   { id:13, name:'Gengar Backpack', cat:'mochila', catLabel:'Mochila Peluche', tag:'Mochila', tagClass:'bag', size:'Trainer Gear · Tamaño real', price:34.99,
     imgs:['GENGAR%20FRONT.jpg','P10314_710E13028_02.jpg','P10314_710E13028_03.jpg','P10314_710E13028_04.jpg'], emoji:'👻',
     desc:'La mochila de peluche más popular del mundo Pokémon. Gengar en tamaño real, lista para llevar a todas partes.',
-    features:['Mochila oficial Pokémon Center','Material peluche suave','Correas ajustables acolchadas','Compartimento principal espacioso','Diseño exclusivo Trainer Gear'] }
+    features:['Mochila oficial Pokémon Center','Material peluche suave','Correas ajustables acolchadas','Compartimento principal espacioso','Diseño exclusivo Trainer Gear'] },
+  { id:14, name:'Eevee Set LEGO', cat:'lego', catLabel:'Set LEGO Pokémon', tag:'LEGO', tagClass:'bag', size:'Set de construcción oficial', price:49.99,
+    imgs:['P12360_73-10108-101_01.jpg','P12360_73-10108-101_02.jpg','P12360_73-10108-101_03.jpg','P12360_73-10108-101_04.jpg'], emoji:'🧱',
+    desc:'Set de construcción LEGO oficial con licencia Pokémon. Construye tu propio Eevee pieza a pieza.',
+    features:['Set LEGO oficial con licencia Pokémon','Figura articulada de Eevee','Incluye instrucciones de construcción','Ideal para coleccionistas y fans de LEGO','Compatible con otros sets LEGO'] }
 ];
 
 // RENDER PRODUCT CARDS
