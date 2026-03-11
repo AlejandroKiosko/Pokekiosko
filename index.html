@@ -64,7 +64,7 @@
     .carousel-bg { position: absolute; inset: 0; background-image: url('https://raw.githubusercontent.com/AlejandroKiosko/Pokekiosko/main/fotos/pokekiosko/fondo_charmeleon_pikachu_psyduck.jpg'); background-size: cover; background-position: center; filter: blur(6px) brightness(0.92); transform: scale(1.04); z-index: 0; }
     .carousel-slide { position: absolute; inset: 0; opacity: 0; transition: opacity 0.9s ease; display: flex; align-items: center; justify-content: center; z-index: 1; }
     .carousel-slide.active { opacity: 1; }
-    .carousel-slide img { width: 72%; height: 72%; object-fit: contain; filter: drop-shadow(0 16px 32px rgba(0,0,0,0.18)); position: relative; z-index: 2; }
+    .carousel-slide img { width: 72%; height: 72%; object-fit: contain; mix-blend-mode: multiply; filter: drop-shadow(0 16px 32px rgba(0,0,0,0.18)); position: relative; z-index: 2; }
     .carousel-slide .slide-label { position: absolute; bottom: 1.5rem; left: 50%; transform: translateX(-50%); background: rgba(255,255,255,0.85); border: 1px solid rgba(255,255,255,0.6); border-radius: 100px; padding: 4px 14px; font-size: 0.75rem; font-weight: 600; color: var(--dark); white-space: nowrap; backdrop-filter: blur(8px); z-index: 3; }
     .carousel-dots { position: absolute; bottom: 0.6rem; left: 50%; transform: translateX(-50%); display: flex; gap: 5px; z-index: 4; }
     .carousel-dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,0.5); transition: background 0.3s, transform 0.3s; cursor: pointer; }
