@@ -241,6 +241,21 @@
     .btn-clear-cart { width: 100%; background: none; color: var(--mid); border: 1px solid var(--border); border-radius: 10px; padding: 10px; font-family: 'DM Sans', sans-serif; font-size: 0.82rem; cursor: pointer; margin-top: 0.5rem; transition: border-color 0.15s; }
     .btn-clear-cart:hover { border-color: var(--red); color: var(--red); }
 
+    /* LEGO LIFESTYLE BANNER */
+    .lego-banner { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); overflow: hidden; }
+    .lego-banner-inner { display: grid; grid-template-columns: 1.2fr 1fr 1fr; height: 320px; gap: 3px; background: white; }
+    .lego-panel { position: relative; overflow: hidden; }
+    .lego-panel img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; display: block; }
+    .lego-panel:hover img { transform: scale(1.04); }
+    .lego-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 60%); display: flex; flex-direction: column; justify-content: flex-end; padding: 1.5rem; }
+    .lego-overlay-top { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.1) 60%); display: flex; flex-direction: column; justify-content: center; padding: 2rem; }
+    .lego-tag { font-size: 0.65rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.7); margin-bottom: 0.4rem; }
+    .lego-title { font-family: 'DM Serif Display', serif; color: white; line-height: 1.2; }
+    .lego-title-lg { font-size: 1.6rem; max-width: 220px; margin-bottom: 1rem; }
+    .lego-title-sm { font-size: 1rem; }
+    .lego-btn { display: inline-block; background: white; color: var(--dark); border: none; border-radius: 7px; padding: 9px 20px; font-family: 'DM Sans', sans-serif; font-size: 0.82rem; font-weight: 700; cursor: pointer; transition: opacity 0.2s; width: fit-content; }
+    .lego-btn:hover { opacity: 0.88; }
+
     /* RESPONSIVE */
     @media (max-width: 900px) {
       .hero-inner { grid-template-columns: 1fr; grid-template-rows: auto auto; padding: 0 1rem; }
@@ -354,6 +369,34 @@
       <button class="f-chip" onclick="filterProducts('lego',this)">🧱 LEGO</button>
     </div>
     <div class="products-grid" id="productsGrid" style="margin-top:1.5rem"></div>
+  </div>
+</div>
+
+<!-- LEGO LIFESTYLE -->
+<div class="lego-banner">
+  <div class="lego-banner-inner">
+    <div class="lego-panel">
+      <img src="https://raw.githubusercontent.com/AlejandroKiosko/Pokekiosko/main/fotos/pokekiosko/P12360_73-10108-101_06.jpg" alt="Armando Eevee LEGO">
+      <div class="lego-overlay-top">
+        <span class="lego-tag">Sets de construcción</span>
+        <div class="lego-title lego-title-lg">Arma tu propio Pokémon.</div>
+        <button class="lego-btn" onclick="filterProducts('lego', document.querySelectorAll('.f-chip')[6]);smoothScroll('catalogo')">Ver sets LEGO →</button>
+      </div>
+    </div>
+    <div class="lego-panel">
+      <img src="https://raw.githubusercontent.com/AlejandroKiosko/Pokekiosko/main/fotos/pokekiosko/P12360_73-10109-101_05.jpg" alt="Armando Pikachu LEGO">
+      <div class="lego-overlay">
+        <span class="lego-tag">Pikachu Set LEGO</span>
+        <div class="lego-title lego-title-sm">Una experiencia única de construcción</div>
+      </div>
+    </div>
+    <div class="lego-panel">
+      <img src="https://raw.githubusercontent.com/AlejandroKiosko/Pokekiosko/main/fotos/pokekiosko/P12360_73-10108-101_07.jpg" alt="Eevee LEGO terminado">
+      <div class="lego-overlay">
+        <span class="lego-tag">Eevee Set LEGO</span>
+        <div class="lego-title lego-title-sm">Figura articulada para coleccionar</div>
+      </div>
+    </div>
   </div>
 </div>
 
