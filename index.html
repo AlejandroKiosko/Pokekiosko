@@ -66,7 +66,7 @@
     .carousel-bg { display: none; }
     .carousel-slide { position: absolute; inset: 0; opacity: 0; transition: opacity 0.9s ease; display: flex; align-items: center; justify-content: center; z-index: 1; }
     .carousel-slide.active { opacity: 1; }
-    .carousel-slide img { width: 72%; height: 72%; object-fit: contain; mix-blend-mode: normal; filter: drop-shadow(0 16px 40px rgba(0,0,0,0.35)); position: relative; z-index: 2; }
+    .carousel-slide img { width: 88%; height: 88%; object-fit: contain; mix-blend-mode: normal; filter: drop-shadow(0 16px 40px rgba(0,0,0,0.35)); position: relative; z-index: 2; }
     .carousel-slide .slide-label { position: absolute; bottom: 1.5rem; left: 50%; transform: translateX(-50%); background: rgba(255,255,255,0.85); border: 1px solid rgba(255,255,255,0.6); border-radius: 100px; padding: 4px 14px; font-size: 0.75rem; font-weight: 600; color: var(--dark); white-space: nowrap; backdrop-filter: blur(8px); z-index: 3; }
     .carousel-dots { position: absolute; bottom: 0.6rem; left: 50%; transform: translateX(-50%); display: flex; gap: 5px; z-index: 4; }
     .carousel-dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,0.5); transition: background 0.3s, transform 0.3s; cursor: pointer; }
@@ -264,7 +264,7 @@
       .hero-btns { justify-content: center; }
       .hero-visual { display: flex; order: 1; min-height: 300px; border-left: none; border-bottom: 1px solid rgba(255,255,255,0.15); }
       .carousel { min-height: 300px; }
-      .carousel-slide img { width: 88%; height: 88%; }
+      .carousel-slide img { width: 100%; height: 100%; }
       .trust-inner { grid-template-columns: repeat(2,1fr); }
       .trust-item:nth-child(2) { border-right: none; }
       .how-grid { grid-template-columns: 1fr; }
@@ -375,22 +375,22 @@
 <!-- LEGO LIFESTYLE -->
 <div class="lego-banner">
   <div class="lego-banner-inner">
-    <div class="lego-panel">
+    <div class="lego-panel" onclick="openModal(14)" style="cursor:pointer">
       <img src="https://raw.githubusercontent.com/AlejandroKiosko/Pokekiosko/main/fotos/pokekiosko/P12360_73-10108-101_06.jpg" alt="Armando Eevee LEGO">
       <div class="lego-overlay-top">
         <span class="lego-tag">Sets de construcción</span>
         <div class="lego-title lego-title-lg">Arma tu propio Pokémon.</div>
-        <button class="lego-btn" onclick="filterProducts('lego', document.querySelectorAll('.f-chip')[6]);smoothScroll('catalogo')">Ver sets LEGO →</button>
+        <button class="lego-btn" onclick="event.stopPropagation();openModal(14)">Ver Eevee LEGO →</button>
       </div>
     </div>
-    <div class="lego-panel">
+    <div class="lego-panel" onclick="openModal(15)" style="cursor:pointer">
       <img src="https://raw.githubusercontent.com/AlejandroKiosko/Pokekiosko/main/fotos/pokekiosko/P12360_73-10109-101_05.jpg" alt="Armando Pikachu LEGO">
       <div class="lego-overlay">
         <span class="lego-tag">Pikachu Set LEGO</span>
         <div class="lego-title lego-title-sm">Una experiencia única de construcción</div>
       </div>
     </div>
-    <div class="lego-panel">
+    <div class="lego-panel" onclick="openModal(14)" style="cursor:pointer">
       <img src="https://raw.githubusercontent.com/AlejandroKiosko/Pokekiosko/main/fotos/pokekiosko/P12360_73-10108-101_07.jpg" alt="Eevee LEGO terminado">
       <div class="lego-overlay">
         <span class="lego-tag">Eevee Set LEGO</span>
