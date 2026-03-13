@@ -380,7 +380,7 @@
       <div class="lego-overlay-top">
         <span class="lego-tag">Sets de construcción</span>
         <div class="lego-title lego-title-lg">Arma tu propio Pokémon.</div>
-        <button class="lego-btn" onclick="event.stopPropagation();openModal(14)">Ver Eevee LEGO →</button>
+        <button class="lego-btn" onclick="event.stopPropagation();filterProducts('lego',document.querySelectorAll('.f-chip')[5]);smoothScroll('catalogo')">Ver sets LEGO →</button>
       </div>
     </div>
     <div class="lego-panel" onclick="openModal(15)" style="cursor:pointer">
@@ -544,7 +544,7 @@ function smoothScroll(id) {
 const BASE = 'https://raw.githubusercontent.com/AlejandroKiosko/Pokekiosko/main/fotos/pokekiosko/';
 
 const PRODUCTS = [
-  { id:0, name:'Pikachu', cat:'peluche', catLabel:'Peluche Oficial', tag:'Peluche 8"', tagClass:'plush', size:'Sitting · 8 pulgadas', price:19.99,
+  { id:0, name:'Pikachu', cat:'peluche starter', catLabel:'Peluche Oficial', tag:'Peluche 8"', tagClass:'plush', size:'Sitting · 8 pulgadas', price:19.99,
     imgs:['SITTING%20PIKACHU%20.png','P10180_701E12210_01.jpg','P10180_701E12210_02.jpg','P10180_701E12210_03.jpg','P10180_701E12210_04.jpg'], emoji:'⚡',
     desc:'Levanta la cola para explorar su entorno. A veces, en esa posición, la cola es alcanzada por un rayo.',
     features:['Peluche oficial Pokémon Center','8 pulgadas de alto','Material: tela suave premium','Apto para todas las edades'] },
@@ -560,7 +560,7 @@ const PRODUCTS = [
     imgs:['P10181_701E12227_01.jpg','P10181_701E12227_02.jpg','P10181_701E12227_03.jpg','P10181_701E12227_04.jpg'], emoji:'💧',
     desc:'Tras su nacimiento, su espalda se hincha y endurece formando un caparazón. Lanza espuma potente por su boca.',
     features:['Peluche oficial Pokémon Center','8 pulgadas de alto','Material: tela suave premium','Apto para todas las edades'] },
-  { id:4, name:'Eevee', cat:'peluche eeveelution', catLabel:'Eeveelution', tag:'Peluche 11"', tagClass:'eevee-fam', size:'11 pulgadas', price:24.99,
+  { id:4, name:'Eevee', cat:'peluche eeveelution starter', catLabel:'Eeveelution', tag:'Peluche 11"', tagClass:'eevee-fam', size:'11 pulgadas', price:24.99,
     imgs:['P10929_72-10324-101_01.jpg','P10929_72-10324-101_02.jpg','P10929_72-10324-101_03.jpg','P10929_72-10324-101_04.jpg'], emoji:'🦊',
     desc:'Su código genético es irregular. Puede mutar si se expone a la radiación de las Piedras Elementales o al afecto de su entrenador.',
     features:['Peluche oficial Pokémon Center','11 pulgadas de alto','Material: tela suave premium','Parte de la colección Eeveelutions'] },
