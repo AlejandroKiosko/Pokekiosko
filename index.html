@@ -245,7 +245,8 @@
     .lego-banner { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); overflow: hidden; }
     .lego-banner-inner { display: grid; grid-template-columns: 1.2fr 1fr 1fr; height: 320px; gap: 3px; background: white; }
     .lego-panel { position: relative; overflow: hidden; }
-    .lego-panel img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; display: block; }
+    .lego-panel img { width: 100%; height: 100%; object-fit: cover; object-position: center center; transition: transform 0.5s ease; display: block; }
+    .lego-panel:first-child img { object-position: center 30%; }
     .lego-panel:hover img { transform: scale(1.04); }
     .lego-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 60%); display: flex; flex-direction: column; justify-content: flex-end; padding: 1.5rem; }
     .lego-overlay-top { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.1) 60%); display: flex; flex-direction: column; justify-content: center; padding: 2rem; }
@@ -375,8 +376,8 @@
 <!-- LEGO LIFESTYLE -->
 <div class="lego-banner">
   <div class="lego-banner-inner">
-    <div class="lego-panel" onclick="openModal(14)" style="cursor:pointer">
-      <img src="https://raw.githubusercontent.com/AlejandroKiosko/Pokekiosko/main/fotos/pokekiosko/P12360_73-10108-101_06.jpg" alt="Armando Eevee LEGO">
+    <div class="lego-panel" onclick="filterProducts('lego',document.querySelectorAll('.f-chip')[5]);smoothScroll('catalogo')" style="cursor:pointer">
+      <img src="https://raw.githubusercontent.com/AlejandroKiosko/Pokekiosko/main/fotos/pokekiosko/P12360_73-10108-101_05.jpg" alt="Armando Eevee LEGO">
       <div class="lego-overlay-top">
         <span class="lego-tag">Sets de construcción</span>
         <div class="lego-title lego-title-lg">Arma tu propio Pokémon.</div>
