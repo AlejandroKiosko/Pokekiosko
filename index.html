@@ -138,6 +138,8 @@
     .how-item h4 { font-weight: 600; font-size: 0.95rem; margin-bottom: 0.4rem; }
     .how-item p { font-size: 0.82rem; color: var(--mid); line-height: 1.6; }
 
+    .sold-out-badge { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); background: rgba(0,0,0,0.72); color: white; font-size: 0.75rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; padding: 6px 14px; border-radius: 6px; pointer-events: none; z-index: 3; }
+    .btn-soldout { background: var(--border) !important; color: var(--mid) !important; cursor: not-allowed !important; opacity: 0.6; }
     /* FOOTER */
     footer { margin-top: 4rem; border-top: 1px solid var(--border); }
     .footer-top { background: var(--dark); padding: 3rem 0; }
@@ -313,7 +315,7 @@
         <svg viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
         <span class="badge" id="cartBadge" style="display:none">0</span>
       </button>
-      <a class="btn-wa" href="https://wa.me/573000000000?text=Hola!%20Quiero%20hacer%20un%20pedido%20en%20PokeKiosko%20🎉" target="_blank">💬 <span>WhatsApp</span></a>
+      <a class="btn-wa" href="https://wa.me/573174190463?text=Hola!%20Quiero%20hacer%20un%20pedido%20en%20PokeKiosko%20🎉" target="_blank">💬 <span>WhatsApp</span></a>
     </div>
   </div>
 </header>
@@ -336,7 +338,7 @@
       <p>Peluches, cartas, juguetes y mochilas originales de Pokémon Center. Envíos a toda Colombia y pedidos rápidos por WhatsApp.</p>
       <div class="hero-btns">
         <button class="btn-primary" onclick="smoothScroll('catalogo')">Ver catálogo</button>
-        <button class="btn-outline" href="https://wa.me/573000000000" onclick="window.open('https://wa.me/573000000000','_blank')">Comprar por WhatsApp</button>
+        <button class="btn-outline" href="https://wa.me/573174190463" onclick="window.open('https://wa.me/573174190463','_blank')">Comprar por WhatsApp</button>
       </div>
     </div>
     <div class="hero-visual">
@@ -443,7 +445,7 @@
         </div>
         <p class="footer-desc">Peluches y coleccionables Pokémon 100% originales. Enviamos a toda Colombia con amor desde Bogotá.</p>
         <div class="footer-social">
-          <a href="https://wa.me/573000000000" target="_blank" class="social-btn">💬 WhatsApp</a>
+          <a href="https://wa.me/573174190463" target="_blank" class="social-btn">💬 WhatsApp</a>
           <a href="https://instagram.com/pokekiosko" target="_blank" class="social-btn">📸 Instagram</a>
         </div>
       </div>
@@ -468,7 +470,7 @@
       <div class="footer-col">
         <h4>Contacto</h4>
         <div class="footer-contact-item">📍 Bogotá, Colombia</div>
-        <div class="footer-contact-item">💬 <a href="https://wa.me/573000000000" target="_blank">WhatsApp</a></div>
+        <div class="footer-contact-item">💬 <a href="https://wa.me/573174190463" target="_blank">WhatsApp</a></div>
         <div class="footer-contact-item">📧 <a href="mailto:info@pokekiosko.com">info@pokekiosko.com</a></div>
         <div class="footer-contact-item">🕐 Lun–Sáb: 9am – 7pm</div>
       </div>
@@ -486,7 +488,7 @@
   </div>
 </footer>
 
-<a class="wa-float" href="https://wa.me/573000000000?text=Hola!" target="_blank">💬</a>
+<a class="wa-float" href="https://wa.me/573174190463?text=Hola!" target="_blank">💬</a>
 <div class="toast" id="toast"></div>
 
 <!-- PRODUCT MODAL -->
@@ -526,7 +528,7 @@
       <span class="cart-total-label">Total estimado</span>
       <span class="cart-total-val" id="cartTotal">$0 COP</span>
     </div>
-    <p class="cart-note">El envío se calcula al confirmar por WhatsApp. Precios en COP.</p>
+    <p class="cart-note">🚚 Envío a toda Colombia: <strong>$18.000 COP</strong>. Precios del producto en COP.</p>
     <button class="btn-checkout" onclick="checkoutWhatsApp()">💬 Enviar pedido por WhatsApp</button>
     <button class="btn-clear-cart" onclick="clearCart()">Vaciar carrito</button>
   </div>
@@ -546,67 +548,67 @@ function smoothScroll(id) {
 const BASE = 'https://raw.githubusercontent.com/AlejandroKiosko/Pokekiosko/main/fotos/pokekiosko/';
 
 const PRODUCTS = [
-  { id:0, name:'Pikachu', cat:'peluche starter', catLabel:'Peluche Oficial', tag:'Peluche 8"', tagClass:'plush', size:'Sitting · 8 pulgadas', price:149000,
+  { id:0, name:'Pikachu', cat:'peluche starter', catLabel:'Peluche Oficial', tag:'Peluche 20cm', tagClass:'plush', size:'Sentado · 20 cm', price:149000,
     imgs:['SITTING%20PIKACHU%20.png','P10180_701E12210_01.jpg','P10180_701E12210_02.jpg','P10180_701E12210_03.jpg','P10180_701E12210_04.jpg'], emoji:'⚡',
     desc:'Levanta la cola para explorar su entorno. A veces, en esa posición, la cola es alcanzada por un rayo.',
-    features:['Peluche oficial Pokémon Center','8 pulgadas de alto','Material: tela suave premium','Apto para todas las edades'] },
-  { id:1, name:'Bulbasaur', cat:'peluche starter', catLabel:'Peluche Oficial', tag:'Peluche 6"', tagClass:'plush', size:'6 pulgadas', price:159000,
+    features:['Peluche oficial Pokémon Center','20 cm de alto','Material: tela suave premium','Apto para todas las edades'] },
+  { id:1, name:'Bulbasaur', cat:'peluche starter', catLabel:'Peluche Oficial', tag:'Peluche 16.5cm', tagClass:'plush', size:'16.5 cm', price:159000,
     imgs:['P10181_701E12228_01.jpg','P10181_701E12228_02.jpg','P10181_701E12228_03.jpg','P10181_701E12228_04.jpg'], emoji:'🌿',
     desc:'Al nacer, le fue implantada una extraña semilla en el lomo. La planta brota y crece junto a este Pokémon.',
-    features:['Peluche oficial Pokémon Center','6 pulgadas de alto','Material: tela suave premium','Apto para todas las edades'] },
-  { id:2, name:'Charmander', cat:'peluche starter', catLabel:'Peluche Oficial', tag:'Peluche 9"', tagClass:'plush', size:'9 pulgadas', price:159000,
+    features:['Peluche oficial Pokémon Center','16.5 cm de alto','Material: tela suave premium','Apto para todas las edades'] },
+  { id:2, name:'Charmander', cat:'peluche starter', catLabel:'Peluche Oficial', tag:'Peluche 23cm', tagClass:'plush', size:'23 cm', price:159000,
     imgs:['P10181_701E12226_01.jpg','P10181_701E12226_02.jpg','P10181_701E12226_03.jpg','P10181_701E12226_04.jpg'], emoji:'🔥',
     desc:'La llama de su cola refleja su estado emocional. Arde con fuerza cuando está enojado y tiembla suavemente cuando disfruta.',
-    features:['Peluche oficial Pokémon Center','9 pulgadas de alto','Material: tela suave premium','Apto para todas las edades'] },
-  { id:3, name:'Squirtle', cat:'peluche starter', catLabel:'Peluche Oficial', tag:'Peluche 8"', tagClass:'plush', size:'8 pulgadas', price:159000,
+    features:['Peluche oficial Pokémon Center','23 cm de alto','Material: tela suave premium','Apto para todas las edades'] },
+  { id:3, name:'Squirtle', cat:'peluche starter', catLabel:'Peluche Oficial', tag:'Peluche 20cm', tagClass:'plush', size:'20 cm', price:159000,
     imgs:['P10181_701E12227_01.jpg','P10181_701E12227_02.jpg','P10181_701E12227_03.jpg','P10181_701E12227_04.jpg'], emoji:'💧',
     desc:'Tras su nacimiento, su espalda se hincha y endurece formando un caparazón. Lanza espuma potente por su boca.',
-    features:['Peluche oficial Pokémon Center','8 pulgadas de alto','Material: tela suave premium','Apto para todas las edades'] },
-  { id:4, name:'Eevee', cat:'peluche eeveelution starter', catLabel:'Eeveelution', tag:'Peluche 11"', tagClass:'eevee-fam', size:'11 pulgadas', price:169000,
+    features:['Peluche oficial Pokémon Center','20 cm de alto','Material: tela suave premium','Apto para todas las edades'] },
+  { id:4, name:'Eevee', cat:'peluche eeveelution starter', catLabel:'Eeveelution', tag:'Peluche 30cm', tagClass:'eevee-fam', size:'30 cm', price:169000,
     imgs:['P10929_72-10324-101_01.jpg','P10929_72-10324-101_02.jpg','P10929_72-10324-101_03.jpg','P10929_72-10324-101_04.jpg'], emoji:'🦊',
     desc:'Su código genético es irregular. Puede mutar si se expone a la radiación de las Piedras Elementales o al afecto de su entrenador.',
-    features:['Peluche oficial Pokémon Center','11 pulgadas de alto','Material: tela suave premium','Parte de la colección Eeveelutions'] },
-  { id:5, name:'Vaporeon', cat:'peluche eeveelution', catLabel:'Eeveelution', tag:'Peluche 10"', tagClass:'eevee-fam', size:'10 pulgadas', price:169000,
+    features:['Peluche oficial Pokémon Center','30 cm de alto','Material: tela suave premium','Parte de la colección Eeveelutions'] },
+  { id:5, name:'Vaporeon', cat:'peluche eeveelution', catLabel:'Eeveelution', tag:'Peluche 27cm', tagClass:'eevee-fam', size:'27 cm', price:169000,
     imgs:['P11178_72-10373-101_01.jpg','P11178_72-10373-101_02%20(1).jpg','P11178_72-10373-101_03.jpg','P11178_72-10373-101_04.jpg'], emoji:'🌊',
     desc:'La estructura celular de su cuerpo es similar a la composición molecular del agua. Puede disolverse en ella haciéndose invisible.',
-    features:['Peluche oficial Pokémon Center','10 pulgadas de alto','Material: tela suave premium','Parte de la colección Eeveelutions'] },
-  { id:6, name:'Flareon', cat:'peluche eeveelution', catLabel:'Eeveelution', tag:'Peluche 11"', tagClass:'eevee-fam', size:'11 pulgadas', price:169000,
+    features:['Peluche oficial Pokémon Center','27 cm de alto','Material: tela suave premium','Parte de la colección Eeveelutions'] },
+  { id:6, name:'Flareon', cat:'peluche eeveelution', catLabel:'Eeveelution', tag:'Peluche 30cm', tagClass:'eevee-fam', size:'30 cm', price:169000,
     imgs:['P10180_701E12234_01.jpg','P10180_701E12234_02.jpg','P10180_701E12234_03.jpg','P10180_701E12234_04.jpg'], emoji:'🔥',
     desc:'Almacena parte del aire que inhala en su bolsa de llama interna, que lo calienta a más de 3.000 grados.',
-    features:['Peluche oficial Pokémon Center','11 pulgadas de alto','Material: tela suave premium','Parte de la colección Eeveelutions'] },
-  { id:7, name:'Jolteon', cat:'peluche eeveelution', catLabel:'Eeveelution', tag:'Peluche 12"', tagClass:'eevee-fam', size:'12 pulgadas', price:169000,
+    features:['Peluche oficial Pokémon Center','30 cm de alto','Material: tela suave premium','Parte de la colección Eeveelutions'] },
+  { id:7, name:'Jolteon', cat:'peluche eeveelution', catLabel:'Eeveelution', tag:'Peluche 30cm', tagClass:'eevee-fam', size:'30 cm', price:169000,
     imgs:['P10929_72-10339-101_01.jpg','P10929_72-10339-101_02.jpg','P10929_72-10339-101_03.jpg','P10929_72-10339-101_04.jpg'], emoji:'⚡',
     desc:'Acumula iones negativos de la atmósfera para lanzar rayos de 10.000 voltios.',
-    features:['Peluche oficial Pokémon Center','12 pulgadas de alto','Material: tela suave premium','Parte de la colección Eeveelutions'] },
-  { id:8, name:'Espeon', cat:'peluche eeveelution', catLabel:'Eeveelution', tag:'Peluche 10"', tagClass:'eevee-fam', size:'10 pulgadas', price:169000,
+    features:['Peluche oficial Pokémon Center','30 cm de alto','Material: tela suave premium','Parte de la colección Eeveelutions'] },
+  { id:8, name:'Espeon', cat:'peluche eeveelution', catLabel:'Eeveelution', tag:'Peluche 27cm', tagClass:'eevee-fam', size:'27 cm', price:169000,
     imgs:['P11178_72-10377-101_01.jpg','P11178_72-10377-101_02.jpg','P11178_72-10377-101_03.jpg','P11178_72-10377-101_04.jpg'], emoji:'🔮',
     desc:'Leyendo las corrientes de aire puede predecir cosas como el tiempo meteorológico o el próximo movimiento del rival.',
-    features:['Peluche oficial Pokémon Center','10 pulgadas de alto','Material: tela suave premium','Parte de la colección Eeveelutions'] },
-  { id:9, name:'Umbreon', cat:'peluche eeveelution', catLabel:'Eeveelution', tag:'Peluche 13"', tagClass:'eevee-fam', size:'13 pulgadas · el más grande', price:169000,
+    features:['Peluche oficial Pokémon Center','27 cm de alto','Material: tela suave premium','Parte de la colección Eeveelutions'] },
+  { id:9, name:'Umbreon', cat:'peluche eeveelution', catLabel:'Eeveelution', tag:'Peluche 33cm', tagClass:'eevee-fam', size:'33 cm · el más grande', price:169000,
     imgs:['P10180_701E12233_01.jpg','P10180_701E12233_02.jpg','P10180_701E12233_03.jpg','P10180_701E12233_04.jpg'], emoji:'🌑',
     desc:'Al exponerse al aura de la luna, los anillos de su cuerpo brillan tenuemente y adquiere un poder misterioso.',
-    features:['Peluche oficial Pokémon Center','13 pulgadas de alto — ¡el más grande!','Material: tela suave premium','Parte de la colección Eeveelutions'] },
-  { id:10, name:'Leafeon', cat:'peluche eeveelution', catLabel:'Eeveelution', tag:'Peluche 11"', tagClass:'eevee-fam', size:'11 pulgadas', price:169000,
+    features:['Peluche oficial Pokémon Center','33 cm de alto — ¡el más grande!','Material: tela suave premium','Parte de la colección Eeveelutions'] },
+  { id:10, name:'Leafeon', cat:'peluche eeveelution', catLabel:'Eeveelution', tag:'Peluche 30cm', tagClass:'eevee-fam', size:'30 cm', price:169000,
     imgs:['P11178_72-10378-101_01.jpg','P11178_72-10378-101_02.jpg','P11178_72-10378-101_03.jpg','P11178_72-10378-101_04.jpg'], emoji:'🍃',
     desc:'Cuando lo ves dormido bajo un rayo de sol, sabes que está usando la fotosíntesis para producir aire limpio.',
-    features:['Peluche oficial Pokémon Center','11 pulgadas de alto','Material: tela suave premium','Parte de la colección Eeveelutions'] },
-  { id:11, name:'Glaceon', cat:'peluche eeveelution', catLabel:'Eeveelution', tag:'Peluche 11"', tagClass:'eevee-fam', size:'11 pulgadas', price:169000,
+    features:['Peluche oficial Pokémon Center','30 cm de alto','Material: tela suave premium','Parte de la colección Eeveelutions'] },
+  { id:11, name:'Glaceon', cat:'peluche eeveelution', catLabel:'Eeveelution', tag:'Peluche 30cm', tagClass:'eevee-fam', size:'30 cm', price:169000,
     imgs:['P10180_701E12229_01.jpg','P10180_701E12229_02.jpg','P10180_701E12229_03.jpg','P10180_701E12229_04.jpg'], emoji:'❄️',
     desc:'Puede controlar su temperatura corporal a voluntad. Su pelaje puede bajar muy por debajo del punto de congelación.',
-    features:['Peluche oficial Pokémon Center','11 pulgadas de alto','Material: tela suave premium','Parte de la colección Eeveelutions'] },
-  { id:12, name:'Sylveon', cat:'peluche eeveelution', catLabel:'Eeveelution', tag:'Peluche 11"', tagClass:'eevee-fam', size:'11 pulgadas', price:169000,
+    features:['Peluche oficial Pokémon Center','30 cm de alto','Material: tela suave premium','Parte de la colección Eeveelutions'] },
+  { id:12, name:'Sylveon', cat:'peluche eeveelution', catLabel:'Eeveelution', tag:'Peluche 30cm', tagClass:'eevee-fam', size:'30 cm', price:169000,
     imgs:['P11178_72-10376-101_01.jpg','P11178_72-10376-101_02.jpg','P11178_72-10376-101_03.jpg','P11178_72-10376-101_04.jpg'], emoji:'🎀',
     desc:'Emite un aura tranquilizadora desde sus antenas en forma de cinta para calmar las peleas.',
-    features:['Peluche oficial Pokémon Center','11 pulgadas de alto','Material: tela suave premium','Parte de la colección Eeveelutions'] },
+    features:['Peluche oficial Pokémon Center','30 cm de alto','Material: tela suave premium','Parte de la colección Eeveelutions'] },
   { id:13, name:'Gengar Backpack', cat:'mochila', catLabel:'Mochila Peluche', tag:'Mochila', tagClass:'bag', size:'Trainer Gear · Tamaño real', price:249000,
     imgs:['P10314_710E13028_02.jpg','P10314_710E13028_03.jpg','P10314_710E13028_04.jpg','P10314_710E13028_05.jpg','P10314_710E13028_06.jpg'], emoji:'👻',
     desc:'La mochila de peluche más popular del mundo Pokémon. Gengar en tamaño real, lista para llevar a todas partes.',
     features:['Mochila oficial Pokémon Center','Material peluche suave','Correas ajustables acolchadas','Compartimento principal espacioso','Diseño exclusivo Trainer Gear'] },
-  { id:14, name:'Eevee Set LEGO', cat:'lego', catLabel:'Set LEGO Pokémon', tag:'LEGO', tagClass:'bag', size:'Set de construcción oficial', price:369000,
+  { id:14, soldOut:true, name:'Eevee Set LEGO', cat:'lego', catLabel:'Set LEGO Pokémon', tag:'LEGO', tagClass:'bag', size:'Set de construcción oficial', price:369000,
     imgs:['P12360_73-10108-101_01.jpg','P12360_73-10108-101_02.jpg','P12360_73-10108-101_03.jpg','P12360_73-10108-101_04.jpg','P12360_73-10108-101_05.jpg','P12360_73-10108-101_06.jpg','P12360_73-10108-101_07.jpg','P12360_73-10108-101_08.jpg'], emoji:'🧱',
     desc:'Set de construcción LEGO oficial con licencia Pokémon. Construye tu propio Eevee pieza a pieza.',
     features:['Set LEGO oficial con licencia Pokémon','Figura articulada de Eevee','Incluye instrucciones de construcción','Ideal para coleccionistas y fans de LEGO'] },
-  { id:15, name:'Pikachu Set LEGO', cat:'lego', catLabel:'Set LEGO Pokémon', tag:'LEGO', tagClass:'bag', size:'Set de construcción oficial', price:990000,
+  { id:15, soldOut:true, name:'Pikachu Set LEGO', cat:'lego', catLabel:'Set LEGO Pokémon', tag:'LEGO', tagClass:'bag', size:'Set de construcción oficial', price:990000,
     imgs:['P12360_73-10109-101_01.jpg','P12360_73-10109-101_02%20(1).jpg','P12360_73-10109-101_03.jpg','P12360_73-10109-101_04.jpg','P12360_73-10109-101_05.jpg','P12360_73-10109-101_06.jpg'], emoji:'🧱',
     desc:'Set de construcción LEGO oficial de Pikachu con licencia Pokémon. Una figura espectacular para armar y exhibir.',
     features:['Set LEGO oficial con licencia Pokémon','Figura articulada de Pikachu','Incluye instrucciones de construcción','Ideal para coleccionistas y fans de LEGO'] }
@@ -621,6 +623,7 @@ function renderProducts(list) {
         <button class="card-wish" onclick="event.stopPropagation();toggleWish(this,'${p.name}')">🤍</button>
         <img src="${BASE}${p.imgs[0]}" alt="${p.name}" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
         <span class="poke-emoji" style="display:none">${p.emoji}</span>
+        ${p.soldOut ? '<span class="sold-out-badge">Agotado</span>' : ''}
       </div>
       <div class="card-info">
         <span class="card-cat">${p.catLabel}</span>
@@ -628,7 +631,7 @@ function renderProducts(list) {
         <span class="card-size">${p.size}</span>
         <div class="card-bottom">
           <span class="card-price">$${p.price.toLocaleString('es-CO')} <span>COP</span></span>
-          <button class="btn-carrito" onclick="event.stopPropagation();addToCart(${p.id})">+ Carrito</button>
+          ${p.soldOut ? '<button class="btn-carrito btn-soldout" disabled>Agotado</button>' : '<button class="btn-carrito" onclick="event.stopPropagation();addToCart('+p.id+')">+ Carrito</button>'}
         </div>
       </div>
     </div>`).join('');
@@ -794,8 +797,8 @@ function checkoutWhatsApp() {
   if (cart.length === 0) return;
   const lines = cart.map(i => `• ${i.name} x${i.qty} — $${(i.price*i.qty).toLocaleString('es-CO')} COP`).join('\n');
   const total = cart.reduce((s,i) => s + i.price*i.qty, 0);
-  const msg = encodeURIComponent(`Hola PokeKiosko! 👋\n\nQuiero pedir:\n${lines}\n\n💰 Total: $${total.toLocaleString('es-CO')} COP\n\n¿Cuál es el costo de envío a mi ciudad?`);
-  window.open('https://wa.me/573000000000?text=' + msg, '_blank');
+  const msg = encodeURIComponent(`Hola PokeKiosko! 👋\n\nQuiero pedir:\n${lines}\n\n💰 Total: $${total.toLocaleString('es-CO')} COP\n\nEl envío es de $18.000 COP a toda Colombia.`);
+  window.open('https://wa.me/573174190463?text=' + msg, '_blank');
 }
 
 // WISHLIST
@@ -811,8 +814,8 @@ function toggleWish(btn, name) {
 }
 
 function pedirWhatsApp(name, price) {
-  const msg = encodeURIComponent(`Hola PokeKiosko! 👋\n\nQuiero pedir:\n🎯 ${name} — $${price.toLocaleString('es-CO')} COP\n\n¿Tienen disponible? ¿Cuánto es el envío?`);
-  window.open('https://wa.me/573000000000?text=' + msg, '_blank');
+  const msg = encodeURIComponent(`Hola PokeKiosko! 👋\n\nQuiero pedir:\n🎯 ${name} — $${price.toLocaleString('es-CO')} COP\n\n¿Tienen disponible? El envío es de $18.000 COP a toda Colombia.`);
+  window.open('https://wa.me/573174190463?text=' + msg, '_blank');
 }
 
 function showToast(msg) {
