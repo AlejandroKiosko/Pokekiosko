@@ -315,7 +315,7 @@
         <svg viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
         <span class="badge" id="cartBadge" style="display:none">0</span>
       </button>
-      <a class="btn-wa" href="https://wa.me/573174190463?text=Hola!%20Quiero%20hacer%20un%20pedido%20en%20PokeKiosko%20🎉" target="_blank">💬 <span>WhatsApp</span></a>
+      <a class="btn-wa" href="https://wa.me/573337496069?text=Hola!%20Quiero%20hacer%20un%20pedido%20en%20PokeKiosko%20🎉" target="_blank">💬 <span>WhatsApp</span></a>
     </div>
   </div>
 </header>
@@ -338,7 +338,7 @@
       <p>Peluches, cartas, juguetes y mochilas originales de Pokémon Center. Envíos a toda Colombia y pedidos rápidos por WhatsApp.</p>
       <div class="hero-btns">
         <button class="btn-primary" onclick="smoothScroll('catalogo')">Ver catálogo</button>
-        <button class="btn-outline" href="https://wa.me/573174190463" onclick="window.open('https://wa.me/573174190463','_blank')">Comprar por WhatsApp</button>
+        <button class="btn-outline" href="https://wa.me/573337496069" onclick="window.open('https://wa.me/573337496069','_blank')">Comprar por WhatsApp</button>
       </div>
     </div>
     <div class="hero-visual">
@@ -445,7 +445,7 @@
         </div>
         <p class="footer-desc">Peluches y coleccionables Pokémon 100% originales. Enviamos a toda Colombia con amor desde Bogotá.</p>
         <div class="footer-social">
-          <a href="https://wa.me/573174190463" target="_blank" class="social-btn">💬 WhatsApp</a>
+          <a href="https://wa.me/573337496069" target="_blank" class="social-btn">💬 WhatsApp</a>
           <a href="https://instagram.com/pokekiosko" target="_blank" class="social-btn">📸 Instagram</a>
         </div>
       </div>
@@ -470,7 +470,7 @@
       <div class="footer-col">
         <h4>Contacto</h4>
         <div class="footer-contact-item">📍 Bogotá, Colombia</div>
-        <div class="footer-contact-item">💬 <a href="https://wa.me/573174190463" target="_blank">WhatsApp</a></div>
+        <div class="footer-contact-item">💬 <a href="https://wa.me/573337496069" target="_blank">WhatsApp</a></div>
         <div class="footer-contact-item">📧 <a href="mailto:info@pokekiosko.com">info@pokekiosko.com</a></div>
         <div class="footer-contact-item">🕐 Lun–Sáb: 9am – 7pm</div>
       </div>
@@ -488,7 +488,7 @@
   </div>
 </footer>
 
-<a class="wa-float" href="https://wa.me/573174190463?text=Hola!" target="_blank">💬</a>
+<a class="wa-float" href="https://wa.me/573337496069?text=Hola!" target="_blank">💬</a>
 <div class="toast" id="toast"></div>
 
 <!-- PRODUCT MODAL -->
@@ -798,7 +798,7 @@ function checkoutWhatsApp() {
   const lines = cart.map(i => `• ${i.name} x${i.qty} — $${(i.price*i.qty).toLocaleString('es-CO')} COP`).join('\n');
   const total = cart.reduce((s,i) => s + i.price*i.qty, 0);
   const msg = encodeURIComponent(`Hola PokeKiosko! 👋\n\nQuiero pedir:\n${lines}\n\n💰 Total: $${total.toLocaleString('es-CO')} COP\n\nEl envío es de $18.000 COP a toda Colombia.`);
-  window.open('https://wa.me/573174190463?text=' + msg, '_blank');
+  window.open('https://wa.me/573337496069?text=' + msg, '_blank');
 }
 
 // WISHLIST
@@ -815,7 +815,7 @@ function toggleWish(btn, name) {
 
 function pedirWhatsApp(name, price) {
   const msg = encodeURIComponent(`Hola PokeKiosko! 👋\n\nQuiero pedir:\n🎯 ${name} — $${price.toLocaleString('es-CO')} COP\n\n¿Tienen disponible? El envío es de $18.000 COP a toda Colombia.`);
-  window.open('https://wa.me/573174190463?text=' + msg, '_blank');
+  window.open('https://wa.me/573337496069?text=' + msg, '_blank');
 }
 
 function showToast(msg) {
