@@ -859,8 +859,8 @@ function sha256(str) {
 }
 
 function checkoutWompi() {
-  if (CART.length === 0) { showToast('Agrega productos al carrito primero'); return; }
-  const total = CART.reduce((s, i) => s + i.price * i.qty, 0);
+  if (cart.length === 0) { showToast('Agrega productos al carrito primero'); return; }
+  const total = cart.reduce((s, i) => s + i.price * i.qty, 0);
   const grandTotal = total + 18000;
   const amountInCents = grandTotal * 100;
   const reference = 'PK-' + Date.now() + '-' + Math.random().toString(36).slice(2,7).toUpperCase();
