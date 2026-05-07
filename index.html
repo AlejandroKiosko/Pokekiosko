@@ -239,6 +239,8 @@
     .cart-total-label { font-size: 0.85rem; color: var(--mid); }
     .cart-total-val { font-family: 'DM Serif Display', serif; font-size: 1.5rem; }
     .cart-note { font-size: 0.75rem; color: var(--mid); margin-bottom: 1rem; line-height: 1.5; }
+    .btn-wompi { width:100%; padding:14px; background:linear-gradient(135deg,#00c389,#00a572); color:white; border:none; border-radius:10px; font-family:'DM Sans',sans-serif; font-size:0.95rem; font-weight:700; cursor:pointer; display:flex; align-items:center; justify-content:center; margin-bottom:0.5rem; transition:opacity 0.2s; }
+    .btn-wompi:hover { opacity:0.9; }
     .btn-checkout { width: 100%; background: #25D366; color: white; border: none; border-radius: 10px; padding: 14px; font-family: 'DM Sans', sans-serif; font-size: 0.95rem; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: opacity 0.2s; }
     .btn-checkout:hover { opacity: 0.88; }
     .btn-clear-cart { width: 100%; background: none; color: var(--mid); border: 1px solid var(--border); border-radius: 10px; padding: 10px; font-family: 'DM Sans', sans-serif; font-size: 0.82rem; cursor: pointer; margin-top: 0.5rem; transition: border-color 0.15s; }
@@ -525,11 +527,22 @@
   <div class="cart-items" id="cartItems"></div>
   <div class="cart-footer" id="cartFooter" style="display:none">
     <div class="cart-total-row">
-      <span class="cart-total-label">Total estimado</span>
+      <span class="cart-total-label">Subtotal</span>
       <span class="cart-total-val" id="cartTotal">$0 COP</span>
     </div>
-    <p class="cart-note">🚚 Envío a toda Colombia: <strong>$18.000 COP</strong>. Precios del producto en COP.</p>
-    <button class="btn-checkout" onclick="checkoutWhatsApp()">💬 Enviar pedido por WhatsApp</button>
+    <div class="cart-total-row" style="font-size:0.82rem;color:var(--mid);margin-top:4px">
+      <span>🚚 Envío a toda Colombia</span>
+      <span>$18.000 COP</span>
+    </div>
+    <div class="cart-total-row" style="font-weight:700;margin-top:8px;padding-top:8px;border-top:1px solid var(--border)">
+      <span>Total</span>
+      <span id="cartGrandTotal">$18.000 COP</span>
+    </div>
+    <button class="btn-wompi" onclick="checkoutWompi()">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="margin-right:6px"><circle cx="12" cy="12" r="11" fill="white" opacity="0.25"/><path d="M7 12l3 3 7-7" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Pagar con Wompi
+    </button>
+    <button class="btn-checkout" onclick="checkoutWhatsApp()">💬 También pedir por WhatsApp</button>
     <button class="btn-clear-cart" onclick="clearCart()">Vaciar carrito</button>
   </div>
 </div>
@@ -771,6 +784,7 @@ function updateCartUI() {
   footer.style.display = 'block';
   const totalPrice = cart.reduce((s, i) => s + i.price * i.qty, 0);
   document.getElementById('cartTotal').textContent = '$' + totalPrice.toLocaleString('es-CO') + ' COP';
+  document.getElementById('cartGrandTotal').textContent = '$' + (totalPrice + 18000).toLocaleString('es-CO') + ' COP';
 
   itemsEl.innerHTML = cart.map(item => `
     <div class="cart-item">
@@ -791,6 +805,23 @@ function updateCartUI() {
 function toggleCart() {
   document.getElementById('cartSidebar').classList.toggle('open');
   document.getElementById('cartOverlay').classList.toggle('open');
+}
+
+async function checkoutWompi() {
+  if (CART.length === 0) return;
+  const total = CART.reduce((s, i) => s + i.price * i.qty, 0);
+  const shipping = 18000;
+  const grandTotal = total + shipping;
+  const amountInCents = grandTotal * 100;
+  const reference = 'PK-' + Date.now() + '-' + Math.random().toString(36).slice(2,7).toUpperCase();
+  const currency = 'COP';
+  const integritySecret = 'prod_integrity_I7XLPDGb7pjQHXKKwBSxCuEHgvmvNVQT';
+  const strToHash = reference + amountInCents + currency + integritySecret;
+  const encoded = new TextEncoder().encode(strToHash);
+  const hashBuffer = await crypto.subtle.digest('SHA-256', encoded);
+  const hashHex = Array.from(new Uint8Array(hashBuffer)).map(b => b.toString(16).padStart(2,'0')).join('');
+  const url = `https://checkout.wompi.co/p/?public-key=pub_prod_poLpw68ACs0cHzQhnpSy68wdHVpXFxkW&currency=COP&amount-in-cents=${amountInCents}&reference=${encodeURIComponent(reference)}&signature:integrity=${hashHex}`;
+  window.open(url, '_blank');
 }
 
 function checkoutWhatsApp() {
