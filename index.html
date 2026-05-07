@@ -809,6 +809,7 @@ function toggleCart() {
 
 async function checkoutWompi() {
   if (CART.length === 0) return;
+  const win = window.open('', '_blank');
   const total = CART.reduce((s, i) => s + i.price * i.qty, 0);
   const shipping = 18000;
   const grandTotal = total + shipping;
@@ -821,7 +822,7 @@ async function checkoutWompi() {
   const hashBuffer = await crypto.subtle.digest('SHA-256', encoded);
   const hashHex = Array.from(new Uint8Array(hashBuffer)).map(b => b.toString(16).padStart(2,'0')).join('');
   const url = `https://checkout.wompi.co/p/?public-key=pub_prod_poLpw68ACs0cHzQhnpSy68wdHVpXFxkW&currency=COP&amount-in-cents=${amountInCents}&reference=${encodeURIComponent(reference)}&signature:integrity=${hashHex}`;
-  window.open(url, '_blank');
+  win.location.href = url;
 }
 
 function checkoutWhatsApp() {
