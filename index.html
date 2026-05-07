@@ -867,7 +867,7 @@ function checkoutWompi() {
   const currency = 'COP';
   const hashHex = sha256(reference + amountInCents + currency + 'prod_integrity_I7XLPDGb7pjQHXKKwBSxCuEHgvmvNVQT');
   const url = 'https://checkout.wompi.co/p/?public-key=pub_prod_poLpw68ACs0cHzQhnpSy68wdHVpXFxkW&currency=COP&amount-in-cents=' + amountInCents + '&reference=' + encodeURIComponent(reference) + '&signature:integrity=' + hashHex;
-  window.open(url, '_blank');
+  window.location.href = url;
 }
 
 function checkoutWhatsApp() {
